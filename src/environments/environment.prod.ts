@@ -6,7 +6,9 @@ export const environment = {
     apiKey: 'AIzaSyDSfwX-_-jdPz1h0N-Ztep7iy3u86gTnQQ',
     authDomain: 'game-scoreboards.firebaseapp.com',
     messagingSenderId: '395707316276',
+    databaseURL:
+      'https://game-scoreboards-default-rtdb.europe-west1.firebasedatabase.app',
   },
   useEmulators: false,
-  production: true
+  production: true,
 };
