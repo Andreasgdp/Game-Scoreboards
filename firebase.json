@@ -1,10 +1,14 @@
 {
   "hosting": {
-    "public": "public",
-    "ignore": [
-      "firebase.json",
-      "**/.*",
-      "**/node_modules/**"
+    "public": "dist/game-scoreboards",
+    "ignore": ["firebase.json", "**/.*", "**/node_modules/**"],
+
+    "redirects": [
+      {
+        "source": "/firebase",
+        "destination": "https://console.firebase.google.com/project/game-scoreboards/overview",
+        "type": 302
+      }
     ]
   },
   "database": {
