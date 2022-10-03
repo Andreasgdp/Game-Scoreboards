@@ -46,6 +46,3 @@ Thumbs.db
 *-debug.log
 .runtimeconfig.json
 
-# Angular environment files
-src/environments/environment.*ts
-
