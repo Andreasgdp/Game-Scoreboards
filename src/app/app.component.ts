@@ -3,6 +3,8 @@ import { Database, onValue } from '@angular/fire/database';
 import { ref, set } from '@firebase/database';
 import { MessageService, PrimeNGConfig } from 'primeng/api';
 
+// TODO use this for inspiration https://fireship.io/lessons/realtime-presence-angular-firebase/
+
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -19,9 +21,16 @@ export class AppComponent implements OnInit {
 
   ngOnInit() {
     this.primengConfig.ripple = true;
+    onValue(ref(this.db, '.info/connected'), (snapshot) => {
+      this.messageService.add({
+        severity: 'info',
+        summary: snapshot.val() ? 'Connected' : 'Disconnected',
+        detail: 'Via MessageService',
+      });
+    });
+
     // listen to changes in the database
     onValue(ref(this.db, 'test'), (snapshot) => {
-      console.log(snapshot.val());
       this.value = snapshot.val();
       this.messageService.add({
         severity: 'success',
@@ -34,7 +43,15 @@ export class AppComponent implements OnInit {
   title = 'game-scoreboards';
 
   handleClick(_event: Event) {
-    set(ref(this.db, 'test'), 'test ' + Math.random());
+    // check connection to firebase
+
+    set(ref(this.db, 'test'), 'test ' + Math.random()).catch((error) => {
+      this.messageService.add({
+        severity: 'error',
+        summary: error,
+        detail: 'Via MessageService',
+      });
+    });
   }
 
   clearToasts(_event: Event) {
