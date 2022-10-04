@@ -1,33 +1,64 @@
-<div class="displayTable">
-  <div class="displayTableCell">
-    <div class="authBlock">
-      <h3>Sign In</h3>
-      <div class="formGroup">
-        <input type="text" class="formControl" placeholder="Username" #userName required>
-      </div>
-      <div class="formGroup">
-        <input type="password" class="formControl" placeholder="Password" #userPassword required>
-      </div>
-      <!-- Calling SignIn Api from AuthService -->
-      <div class="formGroup">
-        <input type="button" class="btn btnPrimary" value="Log in" (click)="authService.SignIn(userName.value, userPassword.value)">
-      </div>
-      <div class="formGroup">
-        <span class="or"><span class="orInner">Or</span></span>
-      </div>
-      <!-- Calling GoogleAuth Api from AuthService -->
-      <div class="formGroup">
-        <button type="button" class="btn googleBtn" (click)="authService.GoogleAuth()">
-          <i class="fab fa-google-plus-g"></i>
-          Log in with Google
-        </button>
-      </div>
-      <div class="forgotPassword">
-        <span routerLink="/forgot-password">Forgot Password?</span>
-      </div>
-    </div>
-    <div class="redirectToLogin">
-      <span>Don't have an account?<span class="redirect" routerLink="/register-user"> Sign Up</span></span>
-    </div>
-  </div>
+<p-menubar [model]="items" class="nav">
+  <p-button
+    label="Sign Up"
+    icon="pi pi-sign-in"
+    [routerLink]="['/register-user']"
+  ></p-button>
+</p-menubar>
+
+<div class="authBlock">
+  <h3 class="spacing">Sign In</h3>
+  <span class="p-float-label p-input-icon-left spacing">
+    <i class="pi pi-at"></i>
+    <input
+      id="float-input"
+      #userName
+      required
+      type="email"
+      pInputText
+      [(ngModel)]="username"
+    />
+    <label for="float-input">Email</label>
+  </span>
+  <span class="p-float-label p-input-icon-left spacing">
+    <i class="pi pi-at"></i>
+    <input
+      id="float-input"
+      #userPassword
+      required
+      type="password"
+      pInputText
+      [(ngModel)]="password"
+    />
+    <label for="float-input">Password</label>
+  </span>
+  <!-- Calling SignIn Api from AuthService -->
+  <p-button
+    label="Sign In"
+    icon="pi pi-sign-in"
+    (onClick)="authService.SignIn(username, password)"
+  ></p-button>
+
+  <!-- Calling GoogleAuth Api from AuthService -->
+  <p-button
+    label="Sign in with Google"
+    icon="pi pi-google"
+    (onClick)="authService.GoogleAuth()"
+  ></p-button>
+  <button
+    pButton
+    pRipple
+    type="button"
+    [routerLink]="['/forgot-password']"
+    label="Forgot Password?"
+    class="p-button-text"
+  ></button>
+  <button
+    pButton
+    pRipple
+    type="button"
+    [routerLink]="['/register-user']"
+    label="Don't have an account? Sign Up"
+    class="p-button-text"
+  ></button>
 </div>
