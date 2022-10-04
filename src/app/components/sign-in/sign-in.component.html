@@ -1,0 +1,64 @@
+<p-menubar [model]="items" class="nav">
+  <p-button
+    label="Sign Up"
+    icon="pi pi-sign-in"
+    [routerLink]="['/register-user']"
+  ></p-button>
+</p-menubar>
+
+<div class="authBlock">
+  <h3 class="spacing">Sign In</h3>
+  <span class="p-float-label p-input-icon-left spacing">
+    <i class="pi pi-at"></i>
+    <input
+      id="float-input"
+      #userName
+      required
+      type="email"
+      pInputText
+      [(ngModel)]="username"
+    />
+    <label for="float-input">Email</label>
+  </span>
+  <span class="p-float-label p-input-icon-left spacing">
+    <i class="pi pi-at"></i>
+    <input
+      id="float-input"
+      #userPassword
+      required
+      type="password"
+      pInputText
+      [(ngModel)]="password"
+    />
+    <label for="float-input">Password</label>
+  </span>
+  <!-- Calling SignIn Api from AuthService -->
+  <p-button
+    label="Sign In"
+    icon="pi pi-sign-in"
+    (onClick)="authService.SignIn(username, password)"
+  ></p-button>
+
+  <!-- Calling GoogleAuth Api from AuthService -->
+  <p-button
+    label="Sign in with Google"
+    icon="pi pi-google"
+    (onClick)="authService.GoogleAuth()"
+  ></p-button>
+  <button
+    pButton
+    pRipple
+    type="button"
+    [routerLink]="['/forgot-password']"
+    label="Forgot Password?"
+    class="p-button-text"
+  ></button>
+  <button
+    pButton
+    pRipple
+    type="button"
+    [routerLink]="['/register-user']"
+    label="Don't have an account? Sign Up"
+    class="p-button-text"
+  ></button>
+</div>

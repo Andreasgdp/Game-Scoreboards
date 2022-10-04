@@ -1,0 +1,54 @@
+<p-menubar [model]="items" class="nav">
+  <p-button
+    label="Sign In"
+    icon="pi pi-sign-in"
+    [routerLink]="['/sign-in']"
+  ></p-button>
+</p-menubar>
+
+<div class="authBlock">
+  <h3>Sign Up</h3>
+  <span class="p-float-label p-input-icon-left spacing">
+    <i class="pi pi-at"></i>
+    <input
+      id="float-input"
+      #userName
+      required
+      type="email"
+      pInputText
+      [(ngModel)]="username"
+    />
+    <label for="float-input">Email</label>
+  </span>
+  <span class="p-float-label p-input-icon-left spacing">
+    <i class="pi pi-at"></i>
+    <input
+      id="float-input"
+      #userPassword
+      required
+      type="password"
+      pInputText
+      [(ngModel)]="password"
+    />
+    <label for="float-input">Password</label>
+  </span>
+  <!-- Calling SignIn Api from AuthService -->
+  <p-button
+    label="Sign Up"
+    icon="pi pi-sign-in"
+    (onClick)="authService.SignUp(username, password)"
+  ></p-button>
+  <p-button
+    label="Sign up with Google"
+    icon="pi pi-google"
+    (onClick)="authService.GoogleAuth()"
+  ></p-button>
+  <button
+    pButton
+    pRipple
+    type="button"
+    [routerLink]="['/sign-in']"
+    label="Already have an account?"
+    class="p-button-text"
+  ></button>
+</div>

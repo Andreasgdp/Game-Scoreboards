@@ -1,0 +1,14 @@
+{
+  "targets": {
+    "game-scoreboards": {
+      "hosting": {
+        "game-scoreboards": [
+          "game-scoreboards"
+        ]
+      }
+    }
+  },
+  "projects": {
+    "default": "game-scoreboards"
+  }
+}
