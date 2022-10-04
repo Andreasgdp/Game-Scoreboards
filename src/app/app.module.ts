@@ -22,6 +22,7 @@ import {
 } from '@angular/fire/firestore';
 import { FormsModule } from '@angular/forms';
 import { ButtonModule } from 'primeng/button';
+import { ImageModule } from 'primeng/image';
 import { InputTextModule } from 'primeng/inputtext';
 import { MenubarModule } from 'primeng/menubar';
 import { ToastModule } from 'primeng/toast';
@@ -34,6 +35,7 @@ import { SignInComponent } from './components/sign-in/sign-in.component';
 import { SignUpComponent } from './components/sign-up/sign-up.component';
 import { VerifyEmailComponent } from './components/verify-email/verify-email.component';
 import { LandingComponent } from './pages/landing/landing.component';
+import { PagenotfoundComponent } from './pages/pagenotfound/pagenotfound.component';
 
 @NgModule({
   declarations: [
@@ -44,6 +46,7 @@ import { LandingComponent } from './pages/landing/landing.component';
     ForgotPasswordComponent,
     VerifyEmailComponent,
     LandingComponent,
+    PagenotfoundComponent,
   ],
   imports: [
     BrowserModule,
@@ -52,6 +55,7 @@ import { LandingComponent } from './pages/landing/landing.component';
     ButtonModule,
     ToastModule,
     FormsModule,
+    ImageModule,
     MenubarModule,
     InputTextModule,
     AngularFireModule.initializeApp(environment.firebase),

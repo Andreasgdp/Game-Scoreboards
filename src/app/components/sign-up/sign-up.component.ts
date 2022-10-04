@@ -9,6 +9,8 @@ import { AuthService } from 'src/app/shared/services/auth.service';
 })
 export class SignUpComponent implements OnInit {
   items: MenuItem[];
+  username = '';
+  password = '';
   constructor(public authService: AuthService) {
     this.items = [
       {

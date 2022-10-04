@@ -1,22 +1,36 @@
-<div class="displayTable">
-  <div class="displayTableCell">
-    <div class="authBlock">
-      <h3>Thank You for Registering</h3>
-      <div class="formGroup" *ngIf="authService.userData as user">
-        <p class="text-center">We have sent a confirmation email to <strong>{{user.email}}</strong>.</p>
-        <p class="text-center">Please check your email and click on the link to verfiy your email address.</p>
-      </div>
-      
-      <!-- Calling SendVerificationMail() method using authService Api -->
-      <div class="formGroup">
-        <button type="button" class="btn btnPrimary" (click)="authService.SendVerificationMail()">
-          <i class="fas fa-redo-alt"></i>
-          Resend Verification Email
-        </button>
-      </div>
-    </div>
-    <div class="redirectToLogin">
-      <span>Go back to?<span class="redirect" routerLink="/sign-in"> Sign in</span></span>
-    </div>
+<p-menubar [model]="items" class="nav">
+  <p-button
+    label="Sign in"
+    icon="pi pi-sign-in"
+    [routerLink]="['/sign-in']"
+  ></p-button>
+</p-menubar>
+
+<div class="authBlock">
+  <h3>Thank You for Registering</h3>
+  <div class="formGroup" *ngIf="authService.userData as user">
+    <p class="text-center">
+      We have sent a confirmation email to <strong>{{ user.email }}</strong
+      >.
+    </p>
+    <p class="text-center">
+      Please check your email and click on the link to verfiy your email
+      address.
+    </p>
   </div>
+
+  <!-- Calling SendVerificationMail() method using authService Api -->
+  <p-button
+    label="Resend Verification Email"
+    icon="pi pi-send"
+    (onClick)="authService.SendVerificationMail()"
+  ></p-button>
+  <button
+    pButton
+    pRipple
+    type="button"
+    [routerLink]="['/sign-in']"
+    label="Go back to sign in"
+    class="p-button-text"
+  ></button>
 </div>
