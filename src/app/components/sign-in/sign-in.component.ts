@@ -11,6 +11,10 @@ export class SignInComponent implements OnInit {
   items: MenuItem[];
   username = '';
   password = '';
+
+  signInLoading = false;
+  googleSignInLoading = false;
+
   constructor(public authService: AuthService) {
     this.items = [
       {
@@ -30,5 +34,24 @@ export class SignInComponent implements OnInit {
     ];
   }
 
-  ngOnInit(): void {}
+  ngOnInit(): void { }
+  
+
+  signIn() {
+    this.signInLoading = true;
+    this.authService
+      .SignIn(this.username, this.password)
+      .then(() => {
+        this.signInLoading = false;
+      });
+  }
+
+  googleSignIn() {
+    this.googleSignInLoading = true;
+    this.authService
+      .GoogleAuth()
+      .then(() => {
+        this.googleSignInLoading = false;
+      });
+  }
 }
