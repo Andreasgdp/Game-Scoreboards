@@ -36,14 +36,16 @@
   <p-button
     label="Sign In"
     icon="pi pi-sign-in"
-    (onClick)="authService.SignIn(username, password)"
+    (onClick)="signIn()"
+    [loading]="signInLoading"
   ></p-button>
 
   <!-- Calling GoogleAuth Api from AuthService -->
   <p-button
     label="Sign in with Google"
     icon="pi pi-google"
-    (onClick)="authService.GoogleAuth()"
+    (onClick)="googleSignIn()"
+    [loading]="googleSignInLoading"
   ></p-button>
   <button
     pButton
