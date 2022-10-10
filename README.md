@@ -17,7 +17,7 @@ firebase login
 
 ## Feature plan
 
-### 1. scoreboard feature - point given scoreboard
+### 1. Scoreboard feature - point given scoreboard
 This feature will work similar to the leaderboard from [KeepScore](https://keepthescore.co/choose/?ref=landing_top) where 
 
 1. Game created
