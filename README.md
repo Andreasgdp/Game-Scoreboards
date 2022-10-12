@@ -15,6 +15,12 @@ Login to firebase:
 firebase login
 ```
 
+## [Project Board](https://app.zenhub.com/workspaces/game-scoreboards-6346a553c38ea62f75099c8f/board)
+
+**IMPORTANT**: In order to see our project board on ZenHub, you need to have an account and have connected it with your GitHub account.
+
+For development management we are using [ZenHub Board](https://app.zenhub.com/workspaces/game-scoreboards-6346a553c38ea62f75099c8f/board). It is recommended to install the browser [extension for ZenHub](https://chrome.google.com/webstore/detail/zenhub-for-github/ogcgkffhplmphkaahpmffcafajaocjbd?hl=en), to be able to view information from our ZenHub board within GitHub.
+
 ## Feature plan
 
 ### 1. Scoreboard feature - point given scoreboard
