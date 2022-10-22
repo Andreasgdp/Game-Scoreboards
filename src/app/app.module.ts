@@ -22,17 +22,18 @@ import {
 } from '@angular/fire/firestore';
 import { FormsModule } from '@angular/forms';
 import { PlayerScoreControlComponent } from '@components/player-score-control/player-score-control.component';
+import { ForgotPasswordComponent } from '@pages/Auth/forgot-password/forgot-password.component';
+import { SignInComponent } from '@pages/Auth/sign-in/sign-in.component';
+import { SignUpComponent } from '@pages/Auth/sign-up/sign-up.component';
+import { VerifyEmailComponent } from '@pages/Auth/verify-email/verify-email.component';
 import { DashboardComponent } from '@pages/dashboard/dashboard.component';
-import { ForgotPasswordComponent } from '@pages/forgot-password/forgot-password.component';
 import { LandingComponent } from '@pages/landing/landing.component';
 import { PagenotfoundComponent } from '@pages/pagenotfound/pagenotfound.component';
-import { SignInComponent } from '@pages/sign-in/sign-in.component';
-import { SignUpComponent } from '@pages/sign-up/sign-up.component';
-import { VerifyEmailComponent } from '@pages/verify-email/verify-email.component';
 import { AvatarModule } from 'primeng/avatar';
 import { AvatarGroupModule } from 'primeng/avatargroup';
 import { ButtonModule } from 'primeng/button';
 import { CardModule } from 'primeng/card';
+import { DynamicDialogModule } from 'primeng/dynamicdialog';
 import { ImageModule } from 'primeng/image';
 import { InputTextModule } from 'primeng/inputtext';
 import { MenubarModule } from 'primeng/menubar';
@@ -40,6 +41,7 @@ import { ToastModule } from 'primeng/toast';
 import { environment } from '../environments/environment';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { SettingsComponent } from './pages/settings/settings.component';
 
 @NgModule({
   declarations: [
@@ -52,6 +54,7 @@ import { AppComponent } from './app.component';
     LandingComponent,
     PagenotfoundComponent,
     PlayerScoreControlComponent,
+    SettingsComponent,
   ],
   imports: [
     BrowserModule,
@@ -60,6 +63,7 @@ import { AppComponent } from './app.component';
     ButtonModule,
     CardModule,
     AvatarModule,
+    DynamicDialogModule,
     AvatarGroupModule,
     ToastModule,
     FormsModule,

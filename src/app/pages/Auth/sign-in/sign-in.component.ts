@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from '@services/Auth';
-import { MenuItem, PrimeIcons } from 'primeng/api';
+import { MenubarService } from '@services/utils';
+import { MenuItem } from 'primeng/api';
 
 @Component({
   selector: 'app-sign-in',
@@ -15,23 +16,11 @@ export class SignInComponent implements OnInit {
   signInLoading = false;
   googleSignInLoading = false;
 
-  constructor(public authService: AuthService) {
-    this.items = [
-      {
-        label: 'Home',
-        routerLink: ['/'],
-        icon: PrimeIcons.HOME,
-      },
-      {
-        label: 'Help',
-        icon: PrimeIcons.QUESTION_CIRCLE,
-        items: [
-          {
-            label: 'Contents',
-          },
-        ],
-      },
-    ];
+  constructor(
+    public authService: AuthService,
+    public menuBarService: MenubarService
+  ) {
+    this.items = menuBarService.getItems();
   }
 
   ngOnInit(): void {}

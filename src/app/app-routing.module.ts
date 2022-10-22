@@ -2,13 +2,14 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { LandingComponent } from './pages/landing/landing.component';
 
+import { ForgotPasswordComponent } from './pages/Auth/forgot-password/forgot-password.component';
+import { SignInComponent } from './pages/Auth/sign-in/sign-in.component';
+import { SignUpComponent } from './pages/Auth/sign-up/sign-up.component';
+import { VerifyEmailComponent } from './pages/Auth/verify-email/verify-email.component';
 import { DashboardComponent } from './pages/dashboard/dashboard.component';
-import { ForgotPasswordComponent } from './pages/forgot-password/forgot-password.component';
 import { PagenotfoundComponent } from './pages/pagenotfound/pagenotfound.component';
-import { SignInComponent } from './pages/sign-in/sign-in.component';
-import { SignUpComponent } from './pages/sign-up/sign-up.component';
-import { VerifyEmailComponent } from './pages/verify-email/verify-email.component';
 import { AuthGuard } from './shared/guards/auth.guard';
+import { SettingsComponent } from '@pages/settings/settings.component';
 
 const routes: Routes = [
   { path: '', component: LandingComponent },
@@ -17,6 +18,11 @@ const routes: Routes = [
   {
     path: 'dashboard',
     component: DashboardComponent,
+    canActivate: [AuthGuard],
+  },
+  {
+    path: 'settings',
+    component: SettingsComponent,
     canActivate: [AuthGuard],
   },
   { path: 'forgot-password', component: ForgotPasswordComponent },

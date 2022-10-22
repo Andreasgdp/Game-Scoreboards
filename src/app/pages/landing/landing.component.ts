@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { MenuItem, PrimeIcons } from 'primeng/api';
+import { MenubarService } from '@services/utils';
+import { MenuItem } from 'primeng/api';
 
 @Component({
   selector: 'app-landing',
@@ -8,24 +9,8 @@ import { MenuItem, PrimeIcons } from 'primeng/api';
 })
 export class LandingComponent implements OnInit {
   items: MenuItem[];
-  constructor() {
-    this.items = [
-      {
-        label: 'Home',
-        routerLink: ['/'],
-        icon: PrimeIcons.HOME,
-      },
-
-      {
-        label: 'Help',
-        icon: PrimeIcons.QUESTION_CIRCLE,
-        items: [
-          {
-            label: 'Contents',
-          },
-        ],
-      },
-    ];
+  constructor(public menubarService: MenubarService) {
+    this.items = menubarService.getItems();
   }
   ngOnInit() {}
 
