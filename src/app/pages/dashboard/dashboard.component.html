@@ -1,38 +1,116 @@
 <!-- Top navigation -->
 <p-menubar [model]="items" class="nav">
-  <button
-    pButton
-    pRipple
+  <p-button
     type="button"
     label="Sign out"
-    class="p-button-danger"
     icon="pi pi-sign-out"
+    styleClass="p-button-danger"
     (click)="authService.SignOut()"
-  ></button>
+  ></p-button>
 </p-menubar>
-<div class="authBlock" *ngIf="authService.userData as user">
-  <div class="col-md-12">
-    <div class="media">
-      <p-image
-        src="{{ user.photoURL ? user.photoURL : '/assets/dummy-user.png' }}"
-        alt="{{ user.displayName }}"
-        width="250"
-        [preview]="true"
-      ></p-image>
-      <div class="media-body">
-        <h1>
-          Hello:
-          <strong>{{ user.displayName ? user.displayName : "User" }}</strong>
-        </h1>
-        <p>
-          User ID: <strong>{{ user.uid }}</strong>
-        </p>
-        <p>
-          Email: <strong>{{ user.email }}</strong>
-        </p>
-        <p>
-          Email Verified: <strong>{{ user.emailVerified }}</strong>
-        </p>
+
+<div class="card" *ngIf="authService.userData as user">
+  <div class="card-container green-container overflow-hidden">
+    <div class="flex">
+      <div
+        class="flex-auto flex align-items-center justify-content-center font-bold text-white m-2 px-5 py-3 border-round"
+      >
+        <p-card
+          class="flex-initial flex align-items-center justify-content-center font-bold text-white m-2 border-round"
+          header="{{ user.displayName ? user.displayName : 'User' }}"
+          subheader="Uid: {{ user.uid }}"
+          [style]="{ width: '360px' }"
+        >
+          <ng-template pTemplate="header">
+            <div class="flex">
+              <div
+                class="flex-auto flex align-items-center justify-content-center font-bold text-white m-2 border-round"
+              >
+                <p-avatar
+                  image="{{
+                    user.photoURL ? user.photoURL : 'assets/dummy-user.png'
+                  }}"
+                  styleClass="mr-2"
+                  size="xlarge"
+                  shape="circle"
+                ></p-avatar>
+              </div>
+            </div>
+          </ng-template>
+          <p>
+            Email: <strong>{{ user.email }}</strong>
+          </p>
+          <p>
+            Email Verified: <strong>{{ user.emailVerified }}</strong>
+          </p>
+        </p-card>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="card" *ngIf="authService.userData as user">
+  <div class="card-container blue-container overflow-hidden">
+    <div class="flex">
+      <div
+        class="flex-auto flex align-items-center justify-content-center font-bold text-white m-2 px-5 py-3 border-round"
+      >
+        <p-card
+          class="flex-initial flex align-items-center justify-content-center font-bold text-white m-2 border-round"
+          header="Point Given Scoreboard"
+          subheader="Scoreboard where points are given in custom amounts."
+          [style]="{ width: '360px' }"
+        >
+          <ng-template pTemplate="header">
+            <div class="flex">
+              <div
+                class="flex-auto flex align-items-center justify-content-center font-bold text-white m-2 px-7 border-round"
+              >
+                <p-image
+                  src="assets/pgs.png"
+                  alt="{{ user.displayName }}"
+                ></p-image>
+              </div>
+            </div>
+          </ng-template>
+          <p>
+            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Inventore
+            sed consequuntur error repudiandae numquam deserunt quisquam
+            repellat libero asperiores earum nam nobis, culpa ratione quam
+            perferendis esse, cupiditate neque quas!
+          </p>
+          <ng-template pTemplate="footer">
+            <p-button label="Create Scoreboard" icon="pi pi-play"></p-button>
+          </ng-template>
+        </p-card>
+        <p-card
+          class="flex-initial flex align-items-center justify-content-center font-bold text-white m-2 border-round"
+          header="Some Other Scoreboard"
+          subheader="Lorem ipsum dolor sit amet, consectetur adipisicing elit."
+          [style]="{ width: '360px' }"
+        >
+          <ng-template pTemplate="header">
+            <div class="flex">
+              <div
+                class="flex-auto flex align-items-center justify-content-center font-bold text-white m-2 px-7 border-round"
+              >
+                <p-image
+                  src="assets/pgs.png"
+                  alt="{{ user.displayName }}"
+                ></p-image>
+              </div>
+            </div>
+          </ng-template>
+          <p>
+            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Inventore
+            sed consequuntur error repudiandae numquam deserunt quisquam
+            repellat libero asperiores earum nam nobis, culpa ratione quam
+            perferendis esse, cupiditate neque quas!
+          </p>
+          <ng-template pTemplate="footer">
+            <p-button label="Create Scoreboard" icon="pi pi-play"></p-button>
+          </ng-template>
+        </p-card>
       </div>
     </div>
   </div>

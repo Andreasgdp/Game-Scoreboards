@@ -21,14 +21,7 @@ import {
   provideFirestore,
 } from '@angular/fire/firestore';
 import { FormsModule } from '@angular/forms';
-import { ButtonModule } from 'primeng/button';
-import { ImageModule } from 'primeng/image';
-import { InputTextModule } from 'primeng/inputtext';
-import { MenubarModule } from 'primeng/menubar';
-import { ToastModule } from 'primeng/toast';
-import { environment } from '../environments/environment';
-import { AppRoutingModule } from './app-routing.module';
-import { AppComponent } from './app.component';
+import { PlayerScoreControlComponent } from '@components/player-score-control/player-score-control.component';
 import { DashboardComponent } from '@pages/dashboard/dashboard.component';
 import { ForgotPasswordComponent } from '@pages/forgot-password/forgot-password.component';
 import { LandingComponent } from '@pages/landing/landing.component';
@@ -36,7 +29,17 @@ import { PagenotfoundComponent } from '@pages/pagenotfound/pagenotfound.componen
 import { SignInComponent } from '@pages/sign-in/sign-in.component';
 import { SignUpComponent } from '@pages/sign-up/sign-up.component';
 import { VerifyEmailComponent } from '@pages/verify-email/verify-email.component';
-import { PlayerScoreControlComponent } from '@components/player-score-control/player-score-control.component';
+import { AvatarModule } from 'primeng/avatar';
+import { AvatarGroupModule } from 'primeng/avatargroup';
+import { ButtonModule } from 'primeng/button';
+import { CardModule } from 'primeng/card';
+import { ImageModule } from 'primeng/image';
+import { InputTextModule } from 'primeng/inputtext';
+import { MenubarModule } from 'primeng/menubar';
+import { ToastModule } from 'primeng/toast';
+import { environment } from '../environments/environment';
+import { AppRoutingModule } from './app-routing.module';
+import { AppComponent } from './app.component';
 
 @NgModule({
   declarations: [
@@ -55,6 +58,9 @@ import { PlayerScoreControlComponent } from '@components/player-score-control/pl
     BrowserAnimationsModule,
     AppRoutingModule,
     ButtonModule,
+    CardModule,
+    AvatarModule,
+    AvatarGroupModule,
     ToastModule,
     FormsModule,
     ImageModule,
