@@ -1,0 +1,7 @@
+// Documentation on local styling https://www.primefaces.org/primeng/theming
+:host ::ng-deep .p-card-content {
+  padding: 0.5rem 0rem;
+  p {
+    margin: 0.5rem 0;
+  }
+}
