@@ -1,14 +1,13 @@
 import { Component, OnInit } from '@angular/core';
+import { AuthService } from '@services/Auth';
 import { MenuItem, PrimeIcons } from 'primeng/api';
-import { AuthService } from 'src/app/shared/services/auth.service';
 
 @Component({
-  selector: 'app-forgot-password',
-  templateUrl: './forgot-password.component.html',
-  styleUrls: ['./forgot-password.component.scss'],
+  selector: 'app-verify-email',
+  templateUrl: './verify-email.component.html',
+  styleUrls: ['./verify-email.component.scss'],
 })
-export class ForgotPasswordComponent implements OnInit {
-  passwordResetEmail = '';
+export class VerifyEmailComponent implements OnInit {
   items: MenuItem[];
   constructor(public authService: AuthService) {
     this.items = [

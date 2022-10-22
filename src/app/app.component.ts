@@ -2,8 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { FIREBASE_OPTIONS } from '@angular/fire/compat';
 import { AngularFireDatabase } from '@angular/fire/compat/database';
 import { Database, onValue, ref } from '@angular/fire/database';
+import { environment } from '../environments/environment';
 import { MessageService, PrimeNGConfig } from 'primeng/api';
-import { environment } from 'src/environments/environment';
 
 // TODO use this for inspiration https://fireship.io/lessons/realtime-presence-angular-firebase/
 

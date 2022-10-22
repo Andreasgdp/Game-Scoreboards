@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { AuthService } from '@services/Auth';
 import { MenuItem, PrimeIcons } from 'primeng/api';
-import { AuthService } from 'src/app/shared/services/auth.service';
 
 @Component({
   selector: 'app-sign-in',
@@ -34,24 +34,19 @@ export class SignInComponent implements OnInit {
     ];
   }
 
-  ngOnInit(): void { }
-  
+  ngOnInit(): void {}
 
   signIn() {
     this.signInLoading = true;
-    this.authService
-      .SignIn(this.username, this.password)
-      .then(() => {
-        this.signInLoading = false;
-      });
+    this.authService.SignIn(this.username, this.password).then(() => {
+      this.signInLoading = false;
+    });
   }
 
   googleSignIn() {
     this.googleSignInLoading = true;
-    this.authService
-      .GoogleAuth()
-      .then(() => {
-        this.googleSignInLoading = false;
-      });
+    this.authService.GoogleAuth().then(() => {
+      this.googleSignInLoading = false;
+    });
   }
 }

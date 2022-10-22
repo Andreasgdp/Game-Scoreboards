@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { AuthService } from './shared/services/auth.service';
+import { AuthService } from '@services/Auth';
 
 import { getApp, initializeApp, provideFirebaseApp } from '@angular/fire/app';
 import { connectAuthEmulator, getAuth, provideAuth } from '@angular/fire/auth';
@@ -29,13 +29,14 @@ import { ToastModule } from 'primeng/toast';
 import { environment } from '../environments/environment';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { DashboardComponent } from './components/dashboard/dashboard.component';
-import { ForgotPasswordComponent } from './components/forgot-password/forgot-password.component';
-import { SignInComponent } from './components/sign-in/sign-in.component';
-import { SignUpComponent } from './components/sign-up/sign-up.component';
-import { VerifyEmailComponent } from './components/verify-email/verify-email.component';
-import { LandingComponent } from './pages/landing/landing.component';
-import { PagenotfoundComponent } from './pages/pagenotfound/pagenotfound.component';
+import { DashboardComponent } from '@pages/dashboard/dashboard.component';
+import { ForgotPasswordComponent } from '@pages/forgot-password/forgot-password.component';
+import { LandingComponent } from '@pages/landing/landing.component';
+import { PagenotfoundComponent } from '@pages/pagenotfound/pagenotfound.component';
+import { SignInComponent } from '@pages/sign-in/sign-in.component';
+import { SignUpComponent } from '@pages/sign-up/sign-up.component';
+import { VerifyEmailComponent } from '@pages/verify-email/verify-email.component';
+import { PlayerScoreControlComponent } from '@components/player-score-control/player-score-control.component';
 
 @NgModule({
   declarations: [
@@ -47,6 +48,7 @@ import { PagenotfoundComponent } from './pages/pagenotfound/pagenotfound.compone
     VerifyEmailComponent,
     LandingComponent,
     PagenotfoundComponent,
+    PlayerScoreControlComponent,
   ],
   imports: [
     BrowserModule,

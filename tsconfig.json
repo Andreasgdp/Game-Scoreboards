@@ -2,7 +2,14 @@
 {
   "compileOnSave": false,
   "compilerOptions": {
-    "baseUrl": "./",
+    "baseUrl": "src",
+    "paths": {
+      "@guards/*": ["app/shared/guards/*"],
+      "@models/*": ["app/shared/models/*"],
+      "@services/*": ["app/shared/services/*"],
+      "@pages/*": ["app/pages/*"],
+      "@components/*": ["app/components/*"]
+    },
     "outDir": "./dist/out-tsc",
     "forceConsistentCasingInFileNames": true,
     "strict": true,

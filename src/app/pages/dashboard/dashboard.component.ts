@@ -1,21 +1,19 @@
 import { Component, OnInit } from '@angular/core';
+import { AuthService } from '@services/Auth';
 import { MenuItem, PrimeIcons } from 'primeng/api';
-import { AuthService } from 'src/app/shared/services/auth.service';
 
 @Component({
-  selector: 'app-sign-up',
-  templateUrl: './sign-up.component.html',
-  styleUrls: ['./sign-up.component.scss'],
+  selector: 'app-dashboard',
+  templateUrl: './dashboard.component.html',
+  styleUrls: ['./dashboard.component.scss'],
 })
-export class SignUpComponent implements OnInit {
+export class DashboardComponent implements OnInit {
   items: MenuItem[];
-  username = '';
-  password = '';
   constructor(public authService: AuthService) {
     this.items = [
       {
         label: 'Home',
-        routerLink: ['/'],
+        routerLink: ['/dashboard'],
         icon: PrimeIcons.HOME,
       },
       {
