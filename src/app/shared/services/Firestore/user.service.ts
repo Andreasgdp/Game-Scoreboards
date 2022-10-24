@@ -3,26 +3,29 @@ import {
   AngularFirestore,
   AngularFirestoreCollection,
 } from '@angular/fire/compat/firestore';
-import { ScoreboardHistory } from '@models/ScoreboardHistory';
-
+import { User } from '@models/user.model';
 
 @Injectable({
   providedIn: 'root',
 })
-export class ScoreboardHistoryService {
-  private dbPath = '/scoreboardHistories';
+export class UserService {
+  private dbPath = '/users';
 
-  tutorialsRef: AngularFirestoreCollection<ScoreboardHistory>;
+  tutorialsRef: AngularFirestoreCollection<User>;
 
   constructor(db: AngularFirestore) {
     this.tutorialsRef = db.collection(this.dbPath);
   }
 
-  getAll(): AngularFirestoreCollection<ScoreboardHistory> {
+  getUser(id: string) {
+    return this.tutorialsRef.doc(id).get();
+  }
+
+  getAll(): AngularFirestoreCollection<User> {
     return this.tutorialsRef;
   }
 
-  create(tutorial: ScoreboardHistory): any {
+  create(tutorial: User): any {
     return this.tutorialsRef.add({ ...tutorial });
   }
 

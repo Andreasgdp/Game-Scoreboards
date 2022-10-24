@@ -10,7 +10,7 @@ import { PointGivenScoreboard } from '@models/PGS';
   providedIn: 'root',
 })
 export class PgsService {
-  private dbPath = '/tutorials';
+  private dbPath = '/pointGivenScoreboards';
 
   pgsRef: AngularFireList<PointGivenScoreboard>;
 

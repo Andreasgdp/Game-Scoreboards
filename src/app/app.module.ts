@@ -36,6 +36,7 @@ import { CardModule } from 'primeng/card';
 import { DynamicDialogModule } from 'primeng/dynamicdialog';
 import { ImageModule } from 'primeng/image';
 import { InputTextModule } from 'primeng/inputtext';
+import { ListboxModule } from 'primeng/listbox';
 import { MenubarModule } from 'primeng/menubar';
 import { ToastModule } from 'primeng/toast';
 import { environment } from '../environments/environment';
@@ -62,6 +63,7 @@ import { SettingsComponent } from './pages/settings/settings.component';
     AppRoutingModule,
     ButtonModule,
     CardModule,
+    ListboxModule,
     AvatarModule,
     DynamicDialogModule,
     AvatarGroupModule,
