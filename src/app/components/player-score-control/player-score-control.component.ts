@@ -10,7 +10,7 @@ import { UserService } from '@services/Firestore/user.service';
 export class PlayerScoreControlComponent implements OnInit {
   users: User[] = [];
 
-  selectedUser?: User;
+  selectedUsers?: User[] = [];
 
   constructor(public userService: UserService, public cd: ChangeDetectorRef) {}
 
@@ -25,8 +25,15 @@ export class PlayerScoreControlComponent implements OnInit {
             ...(e.payload.doc.data() as User),
           } as User;
         });
-        console.log(this.users);
       });
     this.cd.detectChanges();
+  }
+
+  onUserChange(event: any) {
+    this.selectedUsers = event.value;
+  }
+
+  startGame() {
+    console.log(this.selectedUsers);
   }
 }

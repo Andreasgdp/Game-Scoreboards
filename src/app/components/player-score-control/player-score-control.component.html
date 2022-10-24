@@ -2,18 +2,19 @@
   <div class="card-container overflow-hidden">
     <div class="flex">
       <div
-        class="flex-auto flex-wrap flex align-items-center justify-content-center font-bold text-white m-2 px-5 py-3 border-round"
+        class="flex-auto flex-wrap flex align-items-center justify-content-center font-bold text-white border-round"
       >
         <div class="flex-initial font-bold text-white m-2 border-round">
           <h3>Select players for the game</h3>
           <p-listbox
+            [style]="{ width: '100%' }"
             [options]="users"
-            [(ngModel)]="selectedUser"
             [metaKeySelection]="false"
             [checkbox]="true"
             [filter]="true"
+            (onChange)="onUserChange($event)"
             [multiple]="true"
-            optionLabel="name"
+            optionLabel="displayName"
             [listStyle]="{ 'max-height': '250px' }"
             [style]="{ width: '15rem' }"
           >
@@ -24,13 +25,26 @@
                     user.photoURL ? user.photoURL : 'assets/dummy-user.png'
                   }}"
                   styleClass="mr-2"
-                  size="xlarge"
                   shape="circle"
                 ></p-avatar>
                 <div>{{ user.displayName }}</div>
               </div>
             </ng-template>
           </p-listbox>
+        </div>
+      </div>
+    </div>
+    <div class="flex">
+      <div
+        class="flex-auto flex-wrap flex align-items-center justify-content-center font-bold text-white border-round"
+      >
+        <div class="flex-initial font-bold text-white m-2 border-round">
+          <p-button
+            label="Start Game"
+            icon="pi pi-play"
+            class="p-button-raised p-button-rounded"
+            (onClick)="startGame()"
+          ></p-button>
         </div>
       </div>
     </div>

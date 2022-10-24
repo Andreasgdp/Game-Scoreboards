@@ -27,7 +27,7 @@ export class DashboardComponent implements OnInit {
     // Documentation: https://www.primefaces.org/primeng/dynamicdialog
     const ref = this.dialogService.open(PlayerScoreControlComponent, {
       header: 'Create a custom scoreboard',
-      width: '70%',
+      width: '80%',
       contentStyle: { overflow: 'auto' },
       baseZIndex: 10000,
       maximizable: true,
