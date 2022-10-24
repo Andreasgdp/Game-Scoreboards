@@ -1,10 +1,8 @@
 import { Injectable } from '@angular/core';
-import {
-  AngularFireDatabase,
-  AngularFireList,
-} from '@angular/fire/compat/database';
+import { AngularFireDatabase } from '@angular/fire/compat/database';
 import { PointGivenScoreboard } from '@models/PGS';
 import { AuthService } from '@services/Auth';
+import { Observable } from 'rxjs';
 
 // Point Given Scoreboard Service
 @Injectable({
@@ -19,14 +17,22 @@ export class PgsService {
     this.db = db;
   }
 
-  getAll(): AngularFireList<PointGivenScoreboard> {
-    return this.db.list(this.dbPath + '/' + this.authService.userData.uid);
+  // Documentation: https://github.com/angular/angularfire/issues/1299#issuecomment-340895715
+  getAll(): Observable<PointGivenScoreboard[] | null> {
+    return this.db
+      .list<PointGivenScoreboard>(
+        this.dbPath + '/' + this.authService.userData.uid
+      )
+      .valueChanges();
   }
 
-  get(key: string): AngularFireList<PointGivenScoreboard> {
-    return this.db.list(
-      this.dbPath + '/' + this.authService.userData.uid + '/' + key
-    )
+  // Documentation: https://github.com/angular/angularfire/issues/1299#issuecomment-340895715
+  get(key: string): Observable<PointGivenScoreboard | null> {
+    return this.db
+      .object<PointGivenScoreboard>(
+        this.dbPath + '/' + this.authService.uid + '/' + key
+      )
+      .valueChanges();
   }
 
   create(tutorial: PointGivenScoreboard): any {

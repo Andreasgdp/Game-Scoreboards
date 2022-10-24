@@ -8,4 +8,49 @@
   ></p-button>
 </p-menubar>
 
-<div>Showing product details for product: {{ id }}</div>
+<div class="card" *ngIf="gameDetails">
+  <div class="card-container overflow-hidden">
+    <div class="flex">
+      <div
+        class="flex-auto flex-wrap flex align-items-center justify-content-center font-bold text-white m-16 px-5 py-3 border-round"
+      >
+        <h1>{{ gameDetails.title }}</h1>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="card" *ngIf="gameDetails">
+  <div class="card-container overflow-hidden">
+    <div class="flex">
+      <div
+        class="flex-auto flex-wrap flex align-items-center justify-content-center font-bold text-white m-2 px-5 py-3 border-round"
+      >
+        <p-card
+          *ngFor="let user of gameDetails.users"
+          class="flex-initial flex align-items-center justify-content-center font-bold text-white m-2 border-round"
+          header="{{ user.displayName ? user.displayName : 'User' }}"
+          subheader="Uid: {{ user.uid }}"
+          [style]="{ 'min-width': '15rem', 'max-width': '40rem' }"
+        >
+          <ng-template pTemplate="header">
+            <div class="flex">
+              <div
+                class="flex-auto flex align-items-center justify-content-center font-bold text-white m-2 border-round"
+              >
+                <p-avatar
+                  image="{{
+                    user.photoURL ? user.photoURL : 'assets/dummy-user.png'
+                  }}"
+                  styleClass="mr-2"
+                  size="xlarge"
+                  shape="circle"
+                ></p-avatar>
+              </div>
+            </div>
+          </ng-template>
+        </p-card>
+      </div>
+    </div>
+  </div>
+</div>

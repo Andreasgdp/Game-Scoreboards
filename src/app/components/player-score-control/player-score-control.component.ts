@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { PGSUser, PointGivenScoreboard } from '@models/PGS';
 import { UserService } from '@services/Firestore/user.service';
 import { PgsService } from '@services/RTDB/pgs.service';
+import { DynamicDialogRef } from 'primeng/dynamicdialog';
 
 @Component({
   selector: 'app-player-score-control',
@@ -17,7 +18,8 @@ export class PlayerScoreControlComponent implements OnInit {
   constructor(
     public userService: UserService,
     public pgsService: PgsService,
-    public router: Router
+    public router: Router,
+    public ref: DynamicDialogRef
   ) {}
 
   ngOnInit(): void {
@@ -53,7 +55,8 @@ export class PlayerScoreControlComponent implements OnInit {
       return data.key;
     });
 
-    console.log('game', gameKey);
+    this.ref.close();
+
     this.router.navigate(['/games', gameKey]);
   }
 }

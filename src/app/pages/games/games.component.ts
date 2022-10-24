@@ -1,4 +1,4 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { ChangeDetectorRef, Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { PointGivenScoreboard } from '@models/PGS';
 import { AuthService } from '@services/Auth';
@@ -24,17 +24,22 @@ export class GamesComponent implements OnInit, OnDestroy {
     public authService: AuthService,
     private route: ActivatedRoute,
     public menubarService: MenubarService,
-    public pgsService: PgsService
+    public pgsService: PgsService,
+    public cd: ChangeDetectorRef
   ) {
     this.items = menubarService.getItems();
   }
 
-  ngOnInit() {
+  ngOnInit(): void {
     this.sub = this.route.params.subscribe((params) => {
       this.id = params['id']; // (+) converts string 'id' to a number
 
       // In a real app: dispatch action to load the details here.
-      this.pgsService.get(this.id!)
+      this.pgsService.get(this.id!).subscribe((data) => {
+        if (data) {
+          this.gameDetails = data;
+        }
+      });
     });
   }
 

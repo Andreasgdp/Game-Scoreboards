@@ -85,6 +85,14 @@ export class AuthService {
     const user = JSON.parse(localStorage.getItem('user')!);
     return user !== null && user.emailVerified !== false ? true : false;
   }
+
+  // Returns true when user is looged in and email is verified
+  get uid(): string {
+    const user = JSON.parse(localStorage.getItem('user')!);
+    if (user?.uid === undefined) throw new Error('AuthService: User is not logged in');
+    return user?.uid;
+  }
+
   // Sign in with Google
   GoogleAuth() {
     return this.AuthLogin(new auth.GoogleAuthProvider()).then((res: any) => {

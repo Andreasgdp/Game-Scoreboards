@@ -21,8 +21,8 @@ const routes: Routes = [
     component: DashboardComponent,
     canActivate: [AuthGuard],
   },
-  { path: 'games', component: GamesComponent },
-  { path: 'games/:id', component: GamesComponent },
+  { path: 'games', component: GamesComponent, canActivate: [AuthGuard] },
+  { path: 'games/:id', component: GamesComponent, canActivate: [AuthGuard] },
   {
     path: 'settings',
     component: SettingsComponent,
