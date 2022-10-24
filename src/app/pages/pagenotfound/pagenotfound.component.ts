@@ -4,7 +4,7 @@ import { MenubarService } from '@services/utils';
 import { MenuItem } from 'primeng/api';
 
 @Component({
-  selector: 'app-pagenotfound',
+  selector: 'pagenotfound',
   templateUrl: './pagenotfound.component.html',
   styleUrls: ['./pagenotfound.component.scss'],
 })

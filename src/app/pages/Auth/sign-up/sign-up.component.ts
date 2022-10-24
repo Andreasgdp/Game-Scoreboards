@@ -4,7 +4,7 @@ import { MenubarService } from '@services/utils';
 import { MenuItem } from 'primeng/api';
 
 @Component({
-  selector: 'app-sign-up',
+  selector: 'sign-up',
   templateUrl: './sign-up.component.html',
   styleUrls: ['./sign-up.component.scss'],
 })

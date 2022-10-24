@@ -38,6 +38,7 @@ import { ButtonModule } from 'primeng/button';
 import { CardModule } from 'primeng/card';
 import { DynamicDialogModule } from 'primeng/dynamicdialog';
 import { ImageModule } from 'primeng/image';
+import { InputNumberModule } from 'primeng/inputnumber';
 import { InputTextModule } from 'primeng/inputtext';
 import { ListboxModule } from 'primeng/listbox';
 import { MenubarModule } from 'primeng/menubar';
@@ -46,9 +47,10 @@ import { ToastModule } from 'primeng/toast';
 import { environment } from '../environments/environment';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { PGSPlayerScoreCounterComponent } from './components/pgs-player-score-counter/pgs-player-score-counter.component';
 import { ScoreboardCardComponent } from './components/scoreboard-card/scoreboard-card.component';
-import { SettingsComponent } from './pages/settings/settings.component';
 import { GamesComponent } from './pages/games/games.component';
+import { SettingsComponent } from './pages/settings/settings.component';
 
 @NgModule({
   declarations: [
@@ -64,6 +66,7 @@ import { GamesComponent } from './pages/games/games.component';
     SettingsComponent,
     ScoreboardCardComponent,
     GamesComponent,
+    PGSPlayerScoreCounterComponent,
   ],
   imports: [
     BrowserModule,
@@ -71,6 +74,7 @@ import { GamesComponent } from './pages/games/games.component';
     AppRoutingModule,
     ButtonModule,
     SkeletonModule,
+    InputNumberModule,
     CardModule,
     ListboxModule,
     AvatarModule,

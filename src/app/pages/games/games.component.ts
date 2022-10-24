@@ -1,5 +1,5 @@
-import { ChangeDetectorRef, Component, OnDestroy, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { Component, OnDestroy, OnInit } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
 import { PointGivenScoreboard } from '@models/PGS';
 import { AuthService } from '@services/Auth';
 import { PgsService } from '@services/RTDB/pgs.service';
@@ -9,7 +9,7 @@ import { Subscription } from 'rxjs';
 // Documentation: https://angular-training-guide.rangle.io/routing/routeparams
 
 @Component({
-  selector: 'app-games',
+  selector: 'games',
   templateUrl: './games.component.html',
   styleUrls: ['./games.component.scss'],
 })
@@ -25,7 +25,7 @@ export class GamesComponent implements OnInit, OnDestroy {
     private route: ActivatedRoute,
     public menubarService: MenubarService,
     public pgsService: PgsService,
-    public cd: ChangeDetectorRef
+    public router: Router
   ) {
     this.items = menubarService.getItems();
   }
@@ -38,9 +38,18 @@ export class GamesComponent implements OnInit, OnDestroy {
       this.pgsService.get(this.id!).subscribe((data) => {
         if (data) {
           this.gameDetails = data;
+        } else {
+          this.router.navigate(['/404']);
         }
       });
     });
+  }
+
+  updateGame(event: any) {
+    if (this.gameDetails) {
+      this.gameDetails.users.find((user) => user.uid === event.playerUid)!.score = event.score;
+      this.pgsService.update(this.id!, this.gameDetails);
+    }
   }
 
   ngOnDestroy() {

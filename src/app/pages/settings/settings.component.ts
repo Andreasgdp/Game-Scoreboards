@@ -4,7 +4,7 @@ import { MenubarService } from '@services/utils';
 import { MenuItem } from 'primeng/api';
 
 @Component({
-  selector: 'app-settings',
+  selector: 'settings',
   templateUrl: './settings.component.html',
   styleUrls: ['./settings.component.scss'],
 })

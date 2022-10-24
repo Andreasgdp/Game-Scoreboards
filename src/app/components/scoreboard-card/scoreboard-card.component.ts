@@ -1,14 +1,12 @@
-import { Component, EventEmitter, Input, OnInit, Output, Type } from '@angular/core';
-import { DialogService } from 'primeng/dynamicdialog';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 
 @Component({
   selector: 'scoreboard-card',
   templateUrl: './scoreboard-card.component.html',
   styleUrls: ['./scoreboard-card.component.scss'],
-  providers: [DialogService],
 })
 export class ScoreboardCardComponent implements OnInit {
-  constructor(public dialogService: DialogService) {}
+  constructor() {}
 
   @Input() header: string = '';
 

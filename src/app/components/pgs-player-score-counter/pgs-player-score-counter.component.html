@@ -1,0 +1,81 @@
+<p-card
+  class="flex-initial flex align-items-center justify-content-center font-bold text-white m-2 border-round"
+  [style]="{ 'min-width': '15rem', 'max-width': '30rem' }"
+	[header]="header"
+>
+  <ng-template pTemplate="header">
+    <div class="flex">
+      <div
+        class="flex-auto flex align-items-center justify-content-center font-bold text-white m-2 px-7 border-round"
+      >
+        <p-avatar
+          image="{{ imageUrl ? imageUrl : 'assets/dummy-user.png' }}"
+          styleClass="mr-2"
+          size="xlarge"
+          shape="circle"
+        ></p-avatar>
+      </div>
+    </div>
+  </ng-template>
+	<div class="card">
+		<div class="card-container overflow-hidden">
+			<div class="flex">
+				<div
+					class="flex-auto flex-wrap flex align-items-center justify-content-center font-bold text-white m-2 border-round"
+				>
+					<div class="flex">
+						<div
+							class="flex-auto flex-wrap flex-column flex align-items-center justify-content-center font-bold text-white m-2 border-round"
+						>
+							<h4>Score</h4>
+							<p-inputNumber
+								[size]="1"
+								[step]="step"
+								[(ngModel)]="score"
+								[showButtons]="true"
+								buttonLayout="vertical"
+								spinnerMode="vertical"
+								inputId="vertical"
+								decrementButtonClass="p-button-secondary"
+								incrementButtonClass="p-button-secondary"
+								incrementButtonIcon="pi pi-plus"
+								decrementButtonIcon="pi pi-minus"
+								(onInput)="updateGame($event)"
+							>
+							</p-inputNumber>
+						</div>
+					</div>
+
+					<div class="flex">
+						<div
+							class="flex-auto flex-wrap flex-column flex align-items-center justify-content-center font-bold text-white m-2 border-round"
+						>
+							<h4>Step</h4>
+							<div class="flex-row flex-wrap flex justify-content-center">
+								<p-inputNumber
+								class="m-1"
+									[size]="1"
+									[(ngModel)]="step"
+									mode="decimal"
+									[showButtons]="true"
+									inputId="minmax-buttons"
+									[min]="minStep"
+									[max]="maxStep"
+								>
+								</p-inputNumber>
+								<p-button
+								class="m-1"
+									label=""
+									[disabled]="disabled"
+									icon="pi pi-refresh"
+									(onClick)="resetStep()"
+								></p-button>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+</p-card>

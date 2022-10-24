@@ -6,7 +6,7 @@ import { PgsService } from '@services/RTDB/pgs.service';
 import { DynamicDialogRef } from 'primeng/dynamicdialog';
 
 @Component({
-  selector: 'app-player-score-control',
+  selector: 'player-score-control',
   templateUrl: './player-score-control.component.html',
   styleUrls: ['./player-score-control.component.scss'],
 })

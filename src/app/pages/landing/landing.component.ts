@@ -3,7 +3,7 @@ import { MenubarService } from '@services/utils';
 import { MenuItem } from 'primeng/api';
 
 @Component({
-  selector: 'app-landing',
+  selector: 'landing',
   templateUrl: './landing.component.html',
   styleUrls: ['./landing.component.scss'],
 })

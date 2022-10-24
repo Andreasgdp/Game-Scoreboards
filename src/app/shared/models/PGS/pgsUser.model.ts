@@ -2,12 +2,12 @@ export class PGSUser {
   uid: string;
   displayName: string;
   photoURL: string;
-  points: number;
+  score: number;
 
-  constructor(uid: string, displayName: string, photoURL: string, points = 0) {
+  constructor(uid: string, displayName: string, photoURL: string, score = 0) {
     this.uid = uid;
     this.displayName = displayName;
     this.photoURL = photoURL;
-    this.points = points;
+    this.score = score;
   }
 }

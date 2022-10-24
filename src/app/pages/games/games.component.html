@@ -26,30 +26,18 @@
       <div
         class="flex-auto flex-wrap flex align-items-center justify-content-center font-bold text-white m-2 px-5 py-3 border-round"
       >
-        <p-card
+        <pgs-player-score-counter
           *ngFor="let user of gameDetails.users"
-          class="flex-initial flex align-items-center justify-content-center font-bold text-white m-2 border-round"
-          header="{{ user.displayName ? user.displayName : 'User' }}"
-          subheader="Uid: {{ user.uid }}"
-          [style]="{ 'min-width': '15rem', 'max-width': '40rem' }"
-        >
-          <ng-template pTemplate="header">
-            <div class="flex">
-              <div
-                class="flex-auto flex align-items-center justify-content-center font-bold text-white m-2 border-round"
-              >
-                <p-avatar
-                  image="{{
-                    user.photoURL ? user.photoURL : 'assets/dummy-user.png'
-                  }}"
-                  styleClass="mr-2"
-                  size="xlarge"
-                  shape="circle"
-                ></p-avatar>
-              </div>
-            </div>
-          </ng-template>
-        </p-card>
+          [header]="user.displayName"
+          [uid]="user.uid"
+          subHeader="Scoreboard where points are given in custom amounts."
+          description="Play games with your friends"
+          imageUrl="{{
+            user.photoURL ? user.photoURL : 'assets/dummy-user.png'
+          }}"
+          [score]="user.score"
+          (scoreUpdated)="updateGame($event)"
+        ></pgs-player-score-counter>
       </div>
     </div>
   </div>
