@@ -1,52 +1,82 @@
-<div class="card">
-  <div class="card-container overflow-hidden">
-    <div class="flex">
-      <div
-        class="flex-auto flex-wrap flex align-items-center justify-content-center font-bold text-white border-round"
+<div class="flex">
+  <div
+    class="flex-auto flex-wrap flex align-items-center justify-content-center font-bold text-white border-round"
+  >
+    <div class="flex-initial font-bold text-white m-2 border-round">
+      <h3>Select players for the game</h3>
+
+      <p-listbox
+        *ngIf="users.length !== 0; else loading"
+        [options]="users"
+        [metaKeySelection]="false"
+        [checkbox]="true"
+        [filter]="true"
+        (onChange)="onUserChange($event)"
+        [multiple]="true"
+        optionLabel="displayName"
+        [listStyle]="{ 'max-height': '250px' }"
+        [style]="{ width: '15rem' }"
       >
-        <div class="flex-initial font-bold text-white m-2 border-round">
-          <h3>Select players for the game</h3>
-          <p-listbox
-            [style]="{ width: '100%' }"
-            [options]="users"
-            [metaKeySelection]="false"
-            [checkbox]="true"
-            [filter]="true"
-            (onChange)="onUserChange($event)"
-            [multiple]="true"
-            optionLabel="displayName"
-            [listStyle]="{ 'max-height': '250px' }"
-            [style]="{ width: '15rem' }"
-          >
-            <ng-template let-user pTemplate="item">
-              <div class="user-item">
-                <p-avatar
-                  image="{{
-                    user.photoURL ? user.photoURL : 'assets/dummy-user.png'
-                  }}"
-                  styleClass="mr-2"
+        <ng-template let-user pTemplate="item">
+          <div class="user-item">
+            <p-avatar
+              image="{{
+                user.photoURL ? user.photoURL : 'assets/dummy-user.png'
+              }}"
+              styleClass="mr-2"
+              shape="circle"
+            ></p-avatar>
+            <div>{{ user.displayName }}</div>
+          </div>
+        </ng-template>
+      </p-listbox>
+      <!-- loading template -->
+      <ng-template #loading>
+        <div class="custom-skeleton p-4">
+          <ul class="m-0 o-0">
+            <li class="mb-3">
+              <div class="flex">
+                <p-skeleton
                   shape="circle"
-                ></p-avatar>
-                <div>{{ user.displayName }}</div>
+                  size="4rem"
+                  styleClass="mr-2"
+                ></p-skeleton>
+                <div style="flex: 1">
+                  <p-skeleton width="100%" styleClass="mb-2"></p-skeleton>
+                  <p-skeleton width="75%"></p-skeleton>
+                </div>
               </div>
-            </ng-template>
-          </p-listbox>
+            </li>
+            <li class="mb-3">
+              <div class="flex">
+                <p-skeleton
+                  shape="circle"
+                  size="4rem"
+                  styleClass="mr-2"
+                ></p-skeleton>
+                <div style="flex: 1">
+                  <p-skeleton width="100%" styleClass="mb-2"></p-skeleton>
+                  <p-skeleton width="75%"></p-skeleton>
+                </div>
+              </div>
+            </li>
+          </ul>
         </div>
-      </div>
+      </ng-template>
     </div>
-    <div class="flex">
-      <div
-        class="flex-auto flex-wrap flex align-items-center justify-content-center font-bold text-white border-round"
-      >
-        <div class="flex-initial font-bold text-white m-2 border-round">
-          <p-button
-            label="Start Game"
-            icon="pi pi-play"
-            class="p-button-raised p-button-rounded"
-            (onClick)="startGame()"
-          ></p-button>
-        </div>
-      </div>
+  </div>
+</div>
+<div class="flex">
+  <div
+    class="flex-auto flex-wrap flex align-items-center justify-content-center font-bold text-white border-round"
+  >
+    <div class="flex-initial font-bold text-white m-2 border-round">
+      <p-button
+        label="Start Game"
+        icon="pi pi-play"
+        class="p-button-raised p-button-rounded"
+        (onClick)="startGame()"
+      ></p-button>
     </div>
   </div>
 </div>

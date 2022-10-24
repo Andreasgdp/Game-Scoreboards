@@ -1,6 +1,8 @@
-import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
-import { User } from '@models/user.model';
+import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { PGSUser, PointGivenScoreboard } from '@models/PGS';
 import { UserService } from '@services/Firestore/user.service';
+import { PgsService } from '@services/RTDB/pgs.service';
 
 @Component({
   selector: 'app-player-score-control',
@@ -8,11 +10,15 @@ import { UserService } from '@services/Firestore/user.service';
   styleUrls: ['./player-score-control.component.scss'],
 })
 export class PlayerScoreControlComponent implements OnInit {
-  users: User[] = [];
+  users: PGSUser[] = [];
 
-  selectedUsers?: User[] = [];
+  selectedUsers: PGSUser[] = [];
 
-  constructor(public userService: UserService, public cd: ChangeDetectorRef) {}
+  constructor(
+    public userService: UserService,
+    public pgsService: PgsService,
+    public router: Router
+  ) {}
 
   ngOnInit(): void {
     this.userService
@@ -20,20 +26,34 @@ export class PlayerScoreControlComponent implements OnInit {
       .snapshotChanges()
       .subscribe((data) => {
         this.users = data.map((e) => {
-          return {
-            id: e.payload.doc.id,
-            ...(e.payload.doc.data() as User),
-          } as User;
+          const user = e.payload.doc.data();
+          const pgsUser = new PGSUser(
+            user.uid,
+            user.displayName,
+            user.photoURL
+          );
+          return pgsUser;
         });
       });
-    this.cd.detectChanges();
   }
 
   onUserChange(event: any) {
     this.selectedUsers = event.value;
   }
 
-  startGame() {
-    console.log(this.selectedUsers);
+  async startGame() {
+    const pgs = new PointGivenScoreboard(
+      'test',
+      'test',
+      this.selectedUsers,
+      []
+    );
+
+    const gameKey = await this.pgsService.create(pgs).then((data: any) => {
+      return data.key;
+    });
+
+    console.log('game', gameKey);
+    this.router.navigate(['/games', gameKey]);
   }
 }

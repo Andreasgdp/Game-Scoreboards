@@ -9,76 +9,27 @@
   ></p-button>
 </p-menubar>
 
-<div class="card" *ngIf="authService.userData as user">
+<div class="card">
   <div class="card-container overflow-hidden">
     <div class="flex">
       <div
         class="flex-auto flex-wrap flex align-items-center justify-content-center font-bold text-white m-16 px-5 py-3 border-round"
       >
-        <p-card
-          class="flex-initial flex align-items-center justify-content-center font-bold text-white m-2 border-round"
+        <scoreboard-card
           header="Point Given Scoreboard"
-          subheader="Scoreboard where points are given in custom amounts."
-          [style]="{ 'min-width': '15rem', 'max-width': '30rem' }"
-        >
-          <ng-template pTemplate="header">
-            <div class="flex">
-              <div
-                class="flex-auto flex align-items-center justify-content-center font-bold text-white m-2 px-7 border-round"
-              >
-                <p-image
-                  src="assets/pgs.png"
-                  alt="{{ user.displayName }}"
-                ></p-image>
-              </div>
-            </div>
-          </ng-template>
-          <p>
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Inventore
-            sed consequuntur error repudiandae numquam deserunt quisquam
-            repellat libero asperiores earum nam nobis, culpa ratione quam
-            perferendis esse, cupiditate neque quas!
-          </p>
-          <ng-template pTemplate="footer">
-            <p-button
-              label="Create Game"
-              icon="pi pi-play"
-              (onClick)="showPGS()"
-            ></p-button>
-          </ng-template>
-        </p-card>
-        <p-card
-          class="flex-initial flex align-items-center justify-content-center font-bold text-white m-2 border-round"
-          header="Some Other Scoreboard"
-          subheader="Lorem ipsum dolor sit amet, consectetur adipisicing elit."
-          [style]="{ 'min-width': '15rem', 'max-width': '30rem' }"
-        >
-          <ng-template pTemplate="header">
-            <div class="flex">
-              <div
-                class="flex-auto flex align-items-center justify-content-center font-bold text-white m-2 px-7 border-round"
-              >
-                <p-image
-                  src="assets/pgs.png"
-                  alt="{{ user.displayName }}"
-                ></p-image>
-              </div>
-            </div>
-          </ng-template>
-          <p>
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Inventore
-            sed consequuntur error repudiandae numquam deserunt quisquam
-            repellat libero asperiores earum nam nobis, culpa ratione quam
-            perferendis esse, cupiditate neque quas!
-          </p>
-          <ng-template pTemplate="footer">
-            <p-button
-              label="Create Game"
-              icon="pi pi-play"
-              [disabled]="true"
-            ></p-button>
-          </ng-template>
-        </p-card>
+          subHeader="Scoreboard where points are given in custom amounts."
+          description="Play games with your friends"
+          imageUrl="assets/pgs.png"
+          (clicked)="showPGS()"
+        ></scoreboard-card>
+        <scoreboard-card
+          header="Comming soon..."
+          subHeader="..."
+          description="Play games with your friends"
+          imageUrl="assets/pgs.png"
+          [disabled]="true"
+          (clicked)="showPGS()"
+        ></scoreboard-card>
       </div>
     </div>
   </div>

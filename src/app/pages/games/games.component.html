@@ -1,0 +1,11 @@
+<p-menubar [model]="items" class="nav">
+  <p-button
+    type="button"
+    label="Sign out"
+    icon="pi pi-sign-out"
+    styleClass="p-button-danger"
+    (onClick)="authService.SignOut()"
+  ></p-button>
+</p-menubar>
+
+<div>Showing product details for product: {{ id }}</div>

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { AuthService } from '@services/Auth';
 import { MenubarService } from '@services/utils';
 import { MenuItem } from 'primeng/api';
 
@@ -10,7 +11,10 @@ import { MenuItem } from 'primeng/api';
 export class PagenotfoundComponent implements OnInit {
   items: MenuItem[];
 
-  constructor(public menubarService: MenubarService) {
+  constructor(
+    public menubarService: MenubarService,
+    public authService: AuthService
+  ) {
     this.items = menubarService.getItems();
   }
 

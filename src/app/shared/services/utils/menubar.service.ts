@@ -15,15 +15,9 @@ export class MenubarService {
       icon: PrimeIcons.HOME,
     },
     {
-      label: 'Options',
-      icon: PrimeIcons.QUESTION_CIRCLE,
-      items: [
-        {
-          label: 'Settings',
-          routerLink: ['/settings'],
-          icon: PrimeIcons.COG,
-        },
-      ],
+      label: 'Settings',
+      routerLink: ['/settings'],
+      icon: PrimeIcons.COG,
     },
   ];
 

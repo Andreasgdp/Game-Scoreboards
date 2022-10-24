@@ -7,18 +7,21 @@ import { getApp, initializeApp, provideFirebaseApp } from '@angular/fire/app';
 import { connectAuthEmulator, getAuth, provideAuth } from '@angular/fire/auth';
 import { AngularFireModule } from '@angular/fire/compat';
 import { AngularFireAnalyticsModule } from '@angular/fire/compat/analytics';
-import { AngularFirestoreModule } from '@angular/fire/compat/firestore';
+import {
+  AngularFirestoreModule,
+  USE_EMULATOR as USE_FIRESTORE_EMULATOR,
+} from '@angular/fire/compat/firestore';
 import {
   connectDatabaseEmulator,
   getDatabase,
-  provideDatabase
+  provideDatabase,
 } from '@angular/fire/database';
 import {
   connectFirestoreEmulator,
   Firestore,
   getFirestore,
   initializeFirestore,
-  provideFirestore
+  provideFirestore,
 } from '@angular/fire/firestore';
 import { FormsModule } from '@angular/forms';
 import { PlayerScoreControlComponent } from '@components/player-score-control/player-score-control.component';
@@ -38,11 +41,14 @@ import { ImageModule } from 'primeng/image';
 import { InputTextModule } from 'primeng/inputtext';
 import { ListboxModule } from 'primeng/listbox';
 import { MenubarModule } from 'primeng/menubar';
+import { SkeletonModule } from 'primeng/skeleton';
 import { ToastModule } from 'primeng/toast';
 import { environment } from '../environments/environment';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { ScoreboardCardComponent } from './components/scoreboard-card/scoreboard-card.component';
 import { SettingsComponent } from './pages/settings/settings.component';
+import { GamesComponent } from './pages/games/games.component';
 
 @NgModule({
   declarations: [
@@ -56,12 +62,15 @@ import { SettingsComponent } from './pages/settings/settings.component';
     PagenotfoundComponent,
     PlayerScoreControlComponent,
     SettingsComponent,
+    ScoreboardCardComponent,
+    GamesComponent,
   ],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
     AppRoutingModule,
     ButtonModule,
+    SkeletonModule,
     CardModule,
     ListboxModule,
     AvatarModule,
@@ -109,7 +118,13 @@ import { SettingsComponent } from './pages/settings/settings.component';
       return firestore;
     }),
   ],
-  providers: [AuthService],
+  providers: [
+    AuthService,
+    {
+      provide: USE_FIRESTORE_EMULATOR,
+      useValue: environment.useEmulators ? ['localhost', 8080] : undefined,
+    },
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
