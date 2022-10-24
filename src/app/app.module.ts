@@ -11,14 +11,14 @@ import { AngularFirestoreModule } from '@angular/fire/compat/firestore';
 import {
   connectDatabaseEmulator,
   getDatabase,
-  provideDatabase,
+  provideDatabase
 } from '@angular/fire/database';
 import {
   connectFirestoreEmulator,
   Firestore,
   getFirestore,
   initializeFirestore,
-  provideFirestore,
+  provideFirestore
 } from '@angular/fire/firestore';
 import { FormsModule } from '@angular/forms';
 import { PlayerScoreControlComponent } from '@components/player-score-control/player-score-control.component';
@@ -100,6 +100,7 @@ import { SettingsComponent } from './pages/settings/settings.component';
         // Long polling required for Cypress
         firestore = initializeFirestore(getApp(), {
           experimentalForceLongPolling: true,
+          host: 'localhost:8080',
         });
         connectFirestoreEmulator(firestore, 'localhost', 8080);
       } else {

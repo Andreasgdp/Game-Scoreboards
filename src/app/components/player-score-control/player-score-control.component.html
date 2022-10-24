@@ -4,32 +4,34 @@
       <div
         class="flex-auto flex-wrap flex align-items-center justify-content-center font-bold text-white m-2 px-5 py-3 border-round"
       >
-        <p-listbox
-          class="flex-initial flex align-items-center justify-content-center font-bold text-white m-2 border-round"
-          [options]="users"
-          [(ngModel)]="selectedUser"
-          [metaKeySelection]="false"
-          [checkbox]="true"
-          [filter]="true"
-          [multiple]="true"
-          optionLabel="name"
-          [listStyle]="{ 'max-height': '250px' }"
-          [style]="{ width: '15rem' }"
-        >
-          <ng-template let-user pTemplate="item">
-            <div class="user-item">
-              <p-avatar
-                image="{{
-                  user.photoURL ? user.photoURL : 'assets/dummy-user.png'
-                }}"
-                styleClass="mr-2"
-                size="xlarge"
-                shape="circle"
-              ></p-avatar>
-              <div>{{ user.displayName }}</div>
-            </div>
-          </ng-template>
-        </p-listbox>
+        <div class="flex-initial font-bold text-white m-2 border-round">
+          <h3>Select players for the game</h3>
+          <p-listbox
+            [options]="users"
+            [(ngModel)]="selectedUser"
+            [metaKeySelection]="false"
+            [checkbox]="true"
+            [filter]="true"
+            [multiple]="true"
+            optionLabel="name"
+            [listStyle]="{ 'max-height': '250px' }"
+            [style]="{ width: '15rem' }"
+          >
+            <ng-template let-user pTemplate="item">
+              <div class="user-item">
+                <p-avatar
+                  image="{{
+                    user.photoURL ? user.photoURL : 'assets/dummy-user.png'
+                  }}"
+                  styleClass="mr-2"
+                  size="xlarge"
+                  shape="circle"
+                ></p-avatar>
+                <div>{{ user.displayName }}</div>
+              </div>
+            </ng-template>
+          </p-listbox>
+        </div>
       </div>
     </div>
   </div>

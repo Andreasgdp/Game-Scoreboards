@@ -11,29 +11,29 @@ import { User } from '@models/user.model';
 export class UserService {
   private dbPath = '/users';
 
-  tutorialsRef: AngularFirestoreCollection<User>;
+  usersRef: AngularFirestoreCollection<User>;
 
   constructor(db: AngularFirestore) {
-    this.tutorialsRef = db.collection(this.dbPath);
+    this.usersRef = db.collection(this.dbPath);
   }
 
   getUser(id: string) {
-    return this.tutorialsRef.doc(id).get();
+    return this.usersRef.doc(id).get();
   }
 
   getAll(): AngularFirestoreCollection<User> {
-    return this.tutorialsRef;
+    return this.usersRef;
   }
 
-  create(tutorial: User): any {
-    return this.tutorialsRef.add({ ...tutorial });
+  create(user: User): any {
+    return this.usersRef.add({ ...user });
   }
 
   update(id: string, data: any): Promise<void> {
-    return this.tutorialsRef.doc(id).update(data);
+    return this.usersRef.doc(id).update(data);
   }
 
   delete(id: string): Promise<void> {
-    return this.tutorialsRef.doc(id).delete();
+    return this.usersRef.doc(id).delete();
   }
 }

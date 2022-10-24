@@ -5,8 +5,8 @@ import {
   AngularFirestoreDocument,
 } from '@angular/fire/compat/firestore';
 import { Router } from '@angular/router';
-import * as auth from 'firebase/auth';
 import { User } from '@models/user.model';
+import * as auth from 'firebase/auth';
 @Injectable({
   providedIn: 'root',
 })
@@ -121,6 +121,7 @@ export class AuthService {
       photoURL: user.photoURL,
       emailVerified: user.emailVerified,
     };
+
     return userRef.set(userData, {
       merge: true,
     });
