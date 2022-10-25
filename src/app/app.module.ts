@@ -51,6 +51,7 @@ import { PGSPlayerScoreCounterComponent } from './components/pgs-player-score-co
 import { ScoreboardCardComponent } from './components/scoreboard-card/scoreboard-card.component';
 import { GamesComponent } from './pages/games/games.component';
 import { SettingsComponent } from './pages/settings/settings.component';
+import { ServiceWorkerModule } from '@angular/service-worker';
 
 @NgModule({
   declarations: [
@@ -120,6 +121,12 @@ import { SettingsComponent } from './pages/settings/settings.component';
         firestore = getFirestore();
       }
       return firestore;
+    }),
+    ServiceWorkerModule.register('ngsw-worker.js', {
+      enabled: environment.production,
+      // Register the ServiceWorker as soon as the application is stable
+      // or after 30 seconds (whichever comes first).
+      registrationStrategy: 'registerWhenStable:30000'
     }),
   ],
   providers: [
