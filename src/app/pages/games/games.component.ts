@@ -9,6 +9,13 @@ import { MenuItem } from 'primeng/api';
 import { Subscription } from 'rxjs';
 // Documentation: https://angular-training-guide.rangle.io/routing/routeparams
 
+export interface PGSUserAccess {
+  owner: boolean;
+  admin: boolean;
+  player: boolean;
+  spectator: boolean;
+}
+
 @Component({
   selector: 'games',
   templateUrl: './games.component.html',
@@ -18,6 +25,12 @@ export class GamesComponent implements OnInit, OnDestroy {
   id?: string;
   private sub?: Subscription;
   items: MenuItem[];
+  userAccess: PGSUserAccess = {
+    owner: false,
+    admin: false,
+    player: false,
+    spectator: false,
+  };
 
   gameDetails?: PointGivenScoreboard;
   usersDetails?: PGSUser[];
@@ -39,6 +52,19 @@ export class GamesComponent implements OnInit, OnDestroy {
       // In a real app: dispatch action to load the details here.
       this.pgsService.get(this.id!).subscribe((data) => {
         if (data) {
+          this.userAccess = {
+            owner: data.owner === this.authService.uid,
+            // TODO implement admin functionality
+            admin: false,
+            player: data.users.some(
+              (user) => user.uid === this.authService.uid
+            ),
+            // TODO implement spectator functionality
+            spectator: false,
+          };
+          if (!Object.values(this.userAccess).some((value) => value)) {
+            this.router.navigate(['/404']);
+          }
           this.gameDetails = data;
           if (!this.usersDetails) {
             this.usersDetails = data.users;

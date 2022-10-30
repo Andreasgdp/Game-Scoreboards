@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { PGSUser, PointGivenScoreboard } from '@models/PGS';
+import { AuthService } from '@services/Auth';
 import { UserService } from '@services/Firestore/user.service';
 import { PgsService } from '@services/RTDB/pgs.service';
 import { DynamicDialogRef } from 'primeng/dynamicdialog';
@@ -17,6 +18,7 @@ export class PlayerScoreControlComponent implements OnInit {
 
   constructor(
     public userService: UserService,
+    public authService: AuthService,
     public pgsService: PgsService,
     public router: Router,
     public ref: DynamicDialogRef
@@ -47,6 +49,7 @@ export class PlayerScoreControlComponent implements OnInit {
     const pgs = new PointGivenScoreboard(
       'test',
       'test',
+      this.authService.uid,
       this.selectedUsers,
       []
     );

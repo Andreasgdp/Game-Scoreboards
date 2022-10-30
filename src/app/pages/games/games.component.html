@@ -30,7 +30,7 @@
           *ngFor="let user of usersDetails"
           [header]="user.displayName"
           [uid]="user.uid"
-          [showControls]="true"
+          [showControls]="userAccess.owner || userAccess.admin"
           subHeader="Scoreboard where points are given in custom amounts."
           description="Play games with your friends"
           imageUrl="{{
