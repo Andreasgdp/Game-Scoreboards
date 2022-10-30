@@ -19,6 +19,17 @@ export class MenubarService {
       routerLink: ['/settings'],
       icon: PrimeIcons.COG,
     },
+    {
+      label: 'Other',
+      icon: PrimeIcons.BOX,
+      items: [
+        {
+          label: 'Feedback',
+          icon: PrimeIcons.EXTERNAL_LINK,
+          url: 'https://game-scoreboards.hellonext.co/'
+        },
+      ],
+    },
   ];
 
   baseSignedOutMenuItems: MenuItem[] = [
