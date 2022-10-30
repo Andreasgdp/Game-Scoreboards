@@ -1,6 +1,7 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { PointGivenScoreboard } from '@models/PGS';
+import { UpdatedScore } from '@components/pgs-player-score-counter/pgs-player-score-counter.component';
+import { PGSUser, PointGivenScoreboard } from '@models/PGS';
 import { AuthService } from '@services/Auth';
 import { PgsService } from '@services/RTDB/pgs.service';
 import { MenubarService } from '@services/utils';
@@ -19,6 +20,7 @@ export class GamesComponent implements OnInit, OnDestroy {
   items: MenuItem[];
 
   gameDetails?: PointGivenScoreboard;
+  usersDetails?: PGSUser[];
 
   constructor(
     public authService: AuthService,
@@ -38,6 +40,14 @@ export class GamesComponent implements OnInit, OnDestroy {
       this.pgsService.get(this.id!).subscribe((data) => {
         if (data) {
           this.gameDetails = data;
+          if (!this.usersDetails) {
+            this.usersDetails = data.users;
+          } else {
+            for (let user of this.gameDetails.users) {
+              this.usersDetails.find((u) => u.uid === user.uid)!.score =
+                user.score;
+            }
+          }
         } else {
           this.router.navigate(['/404']);
         }
@@ -45,10 +55,12 @@ export class GamesComponent implements OnInit, OnDestroy {
     });
   }
 
-  updateGame(event: any) {
-    if (this.gameDetails) {
-      this.gameDetails.users.find((user) => user.uid === event.playerUid)!.score = event.score;
-      this.pgsService.update(this.id!, this.gameDetails);
+  updateGame(event: UpdatedScore) {
+    if (this.gameDetails && this.id) {
+      this.gameDetails.users.find(
+        (user) => user.uid === event.playerUid
+      )!.score = event.score;
+      this.pgsService.update(this.id, { ...this.gameDetails });
     }
   }
 

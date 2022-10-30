@@ -1,6 +1,6 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 
-interface UpdatedScore {
+export interface UpdatedScore {
   playerUid: string;
   score: number;
 }
@@ -11,7 +11,9 @@ interface UpdatedScore {
   styleUrls: ['./pgs-player-score-counter.component.scss'],
 })
 export class PGSPlayerScoreCounterComponent implements OnInit {
-  constructor() {}
+  constructor() { }
+  
+  @Input() showControls: boolean = false;
 
   @Input() header: string = '';
 
@@ -27,18 +29,26 @@ export class PGSPlayerScoreCounterComponent implements OnInit {
 
   step: number = 1;
 
-  @Input() minStep: number = -100;
+  @Input() minStep: number = 1;
 
   @Input() maxStep: number = 100;
 
   @Output() scoreUpdated: EventEmitter<UpdatedScore> = new EventEmitter();
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    console.log('oh shit');
+  }
 
   resetStep() {
     this.step = 1;
   }
-  updateGame(event: any) {
+
+  resetPlayerScore() {
+    this.score = 0;
+    this.scoreUpdated.emit({ playerUid: this.uid, score: this.score });
+  }
+
+  updatePlayer(event: any) {
     this.scoreUpdated.emit({
       playerUid: this.uid,
       score: event.value,

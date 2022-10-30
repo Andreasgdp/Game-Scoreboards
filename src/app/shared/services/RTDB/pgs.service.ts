@@ -41,8 +41,8 @@ export class PgsService {
       .push(tutorial);
   }
 
-  update(key: string, value: any): Promise<void> {
-    return this.db
+  async update(key: string, value: any) {
+    await this.db
       .list(this.dbPath + '/' + this.authService.userData.uid)
       .update(key, value);
   }
