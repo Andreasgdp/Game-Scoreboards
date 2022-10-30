@@ -1,0 +1,36 @@
+<!-- Top navigation -->
+<p-menubar [model]="items" class="nav">
+  <p-button
+    type="button"
+    label="Sign out"
+    icon="pi pi-sign-out"
+    styleClass="p-button-danger"
+    (onClick)="authService.SignOut()"
+  ></p-button>
+</p-menubar>
+
+<div class="card">
+  <div class="card-container overflow-hidden">
+    <div class="flex">
+      <div
+        class="flex-auto flex-wrap flex align-items-center justify-content-center font-bold text-white m-16 px-5 py-3 border-round"
+      >
+        <scoreboard-card
+          header="Point Given Scoreboard"
+          subHeader="Scoreboard where points are given in custom amounts."
+          description="Play games with your friends"
+          imageUrl="assets/pgs.png"
+          (clicked)="showPGS()"
+        ></scoreboard-card>
+        <scoreboard-card
+          header="Comming soon..."
+          subHeader="..."
+          description="Play games with your friends"
+          imageUrl="assets/pgs.png"
+          [disabled]="true"
+          (clicked)="showPGS()"
+        ></scoreboard-card>
+      </div>
+    </div>
+  </div>
+</div>

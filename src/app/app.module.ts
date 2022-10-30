@@ -1,13 +1,16 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { AuthService } from './shared/services/auth.service';
+import { AuthService } from '@services/Auth';
 
 import { getApp, initializeApp, provideFirebaseApp } from '@angular/fire/app';
 import { connectAuthEmulator, getAuth, provideAuth } from '@angular/fire/auth';
 import { AngularFireModule } from '@angular/fire/compat';
 import { AngularFireAnalyticsModule } from '@angular/fire/compat/analytics';
-import { AngularFirestoreModule } from '@angular/fire/compat/firestore';
+import {
+  AngularFirestoreModule,
+  USE_EMULATOR as USE_FIRESTORE_EMULATOR,
+} from '@angular/fire/compat/firestore';
 import {
   connectDatabaseEmulator,
   getDatabase,
@@ -21,21 +24,34 @@ import {
   provideFirestore,
 } from '@angular/fire/firestore';
 import { FormsModule } from '@angular/forms';
+import { PlayerScoreControlComponent } from '@components/player-score-control/player-score-control.component';
+import { ForgotPasswordComponent } from '@pages/Auth/forgot-password/forgot-password.component';
+import { SignInComponent } from '@pages/Auth/sign-in/sign-in.component';
+import { SignUpComponent } from '@pages/Auth/sign-up/sign-up.component';
+import { VerifyEmailComponent } from '@pages/Auth/verify-email/verify-email.component';
+import { DashboardComponent } from '@pages/dashboard/dashboard.component';
+import { LandingComponent } from '@pages/landing/landing.component';
+import { PagenotfoundComponent } from '@pages/pagenotfound/pagenotfound.component';
+import { AvatarModule } from 'primeng/avatar';
+import { AvatarGroupModule } from 'primeng/avatargroup';
 import { ButtonModule } from 'primeng/button';
+import { CardModule } from 'primeng/card';
+import { DynamicDialogModule } from 'primeng/dynamicdialog';
 import { ImageModule } from 'primeng/image';
+import { InputNumberModule } from 'primeng/inputnumber';
 import { InputTextModule } from 'primeng/inputtext';
+import { ListboxModule } from 'primeng/listbox';
 import { MenubarModule } from 'primeng/menubar';
+import { SkeletonModule } from 'primeng/skeleton';
 import { ToastModule } from 'primeng/toast';
 import { environment } from '../environments/environment';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { DashboardComponent } from './components/dashboard/dashboard.component';
-import { ForgotPasswordComponent } from './components/forgot-password/forgot-password.component';
-import { SignInComponent } from './components/sign-in/sign-in.component';
-import { SignUpComponent } from './components/sign-up/sign-up.component';
-import { VerifyEmailComponent } from './components/verify-email/verify-email.component';
-import { LandingComponent } from './pages/landing/landing.component';
-import { PagenotfoundComponent } from './pages/pagenotfound/pagenotfound.component';
+import { PGSPlayerScoreCounterComponent } from './components/pgs-player-score-counter/pgs-player-score-counter.component';
+import { ScoreboardCardComponent } from './components/scoreboard-card/scoreboard-card.component';
+import { GamesComponent } from './pages/games/games.component';
+import { SettingsComponent } from './pages/settings/settings.component';
+import { ServiceWorkerModule } from '@angular/service-worker';
 
 @NgModule({
   declarations: [
@@ -47,12 +63,24 @@ import { PagenotfoundComponent } from './pages/pagenotfound/pagenotfound.compone
     VerifyEmailComponent,
     LandingComponent,
     PagenotfoundComponent,
+    PlayerScoreControlComponent,
+    SettingsComponent,
+    ScoreboardCardComponent,
+    GamesComponent,
+    PGSPlayerScoreCounterComponent,
   ],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
     AppRoutingModule,
     ButtonModule,
+    SkeletonModule,
+    InputNumberModule,
+    CardModule,
+    ListboxModule,
+    AvatarModule,
+    DynamicDialogModule,
+    AvatarGroupModule,
     ToastModule,
     FormsModule,
     ImageModule,
@@ -86,6 +114,7 @@ import { PagenotfoundComponent } from './pages/pagenotfound/pagenotfound.compone
         // Long polling required for Cypress
         firestore = initializeFirestore(getApp(), {
           experimentalForceLongPolling: true,
+          host: 'localhost:8080',
         });
         connectFirestoreEmulator(firestore, 'localhost', 8080);
       } else {
@@ -93,8 +122,20 @@ import { PagenotfoundComponent } from './pages/pagenotfound/pagenotfound.compone
       }
       return firestore;
     }),
+    ServiceWorkerModule.register('ngsw-worker.js', {
+      enabled: environment.production,
+      // Register the ServiceWorker as soon as the application is stable
+      // or after 30 seconds (whichever comes first).
+      registrationStrategy: 'registerWhenStable:30000'
+    }),
   ],
-  providers: [AuthService],
+  providers: [
+    AuthService,
+    {
+      provide: USE_FIRESTORE_EMULATOR,
+      useValue: environment.useEmulators ? ['localhost', 8080] : undefined,
+    },
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

@@ -1,0 +1,45 @@
+<p-menubar [model]="items" class="nav">
+  <p-button
+    type="button"
+    label="Sign out"
+    icon="pi pi-sign-out"
+    styleClass="p-button-danger"
+    (onClick)="authService.SignOut()"
+  ></p-button>
+</p-menubar>
+
+<div class="card" *ngIf="gameDetails">
+  <div class="card-container overflow-hidden">
+    <div class="flex">
+      <div
+        class="flex-auto flex-wrap flex align-items-center justify-content-center font-bold text-white m-16 px-5 py-3 border-round"
+      >
+        <h1>{{ gameDetails.title }}</h1>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="card" *ngIf="gameDetails">
+  <div class="card-container overflow-hidden">
+    <div class="flex">
+      <div
+        class="flex-auto flex-wrap flex align-items-center justify-content-center font-bold text-white m-2 px-5 py-3 border-round"
+      >
+        <pgs-player-score-counter
+          *ngFor="let user of usersDetails"
+          [header]="user.displayName"
+          [uid]="user.uid"
+          [showControls]="userAccess.owner || userAccess.admin"
+          subHeader="Scoreboard where points are given in custom amounts."
+          description="Play games with your friends"
+          imageUrl="{{
+            user.photoURL ? user.photoURL : 'assets/dummy-user.png'
+          }}"
+          [score]="user.score"
+          (scoreUpdated)="updateGame($event)"
+        ></pgs-player-score-counter>
+      </div>
+    </div>
+  </div>
+</div>

@@ -2,13 +2,15 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { LandingComponent } from './pages/landing/landing.component';
 
-import { DashboardComponent } from './components/dashboard/dashboard.component';
-import { ForgotPasswordComponent } from './components/forgot-password/forgot-password.component';
-import { SignInComponent } from './components/sign-in/sign-in.component';
-import { SignUpComponent } from './components/sign-up/sign-up.component';
-import { VerifyEmailComponent } from './components/verify-email/verify-email.component';
-import { AuthGuard } from './shared/guard/auth.guard';
+import { GamesComponent } from '@pages/games/games.component';
+import { SettingsComponent } from '@pages/settings/settings.component';
+import { ForgotPasswordComponent } from './pages/Auth/forgot-password/forgot-password.component';
+import { SignInComponent } from './pages/Auth/sign-in/sign-in.component';
+import { SignUpComponent } from './pages/Auth/sign-up/sign-up.component';
+import { VerifyEmailComponent } from './pages/Auth/verify-email/verify-email.component';
+import { DashboardComponent } from './pages/dashboard/dashboard.component';
 import { PagenotfoundComponent } from './pages/pagenotfound/pagenotfound.component';
+import { AuthGuard } from './shared/guards/auth.guard';
 
 const routes: Routes = [
   { path: '', component: LandingComponent },
@@ -17,6 +19,13 @@ const routes: Routes = [
   {
     path: 'dashboard',
     component: DashboardComponent,
+    canActivate: [AuthGuard],
+  },
+  { path: 'games', component: GamesComponent, canActivate: [AuthGuard] },
+  { path: 'games/:id', component: GamesComponent, canActivate: [AuthGuard] },
+  {
+    path: 'settings',
+    component: SettingsComponent,
     canActivate: [AuthGuard],
   },
   { path: 'forgot-password', component: ForgotPasswordComponent },
