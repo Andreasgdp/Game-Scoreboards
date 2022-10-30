@@ -35,9 +35,7 @@ export class PGSPlayerScoreCounterComponent implements OnInit {
 
   @Output() scoreUpdated: EventEmitter<UpdatedScore> = new EventEmitter();
 
-  ngOnInit(): void {
-    console.log('oh shit');
-  }
+  ngOnInit(): void { }
 
   resetStep() {
     this.step = 1;
