@@ -6,61 +6,116 @@
   ></p-button>
 </p-menubar>
 
-<div class="authBlock">
-  <h3 class="spacing">Sign In</h3>
-  <span class="p-float-label p-input-icon-left spacing">
-    <i class="pi pi-at"></i>
-    <input
-      id="float-input"
-      #userName
-      required
-      type="email"
-      pInputText
-      [(ngModel)]="username"
-    />
-    <label for="float-input">Email</label>
-  </span>
-  <span class="p-float-label p-input-icon-left spacing">
-    <i class="pi pi-at"></i>
-    <input
-      id="float-input"
-      #userPassword
-      required
-      type="password"
-      pInputText
-      [(ngModel)]="password"
-    />
-    <label for="float-input">Password</label>
-  </span>
-  <!-- Calling SignIn Api from AuthService -->
-  <p-button
-    label="Sign In"
-    icon="pi pi-sign-in"
-    (onClick)="signIn()"
-    [loading]="signInLoading"
-  ></p-button>
+<!-- Center content -->
+<form [formGroup]="userform">
+  <div class="flex justify-content-center align-items-center authBlock">
+    <div class="surface-card p-4 shadow-2 border-round w-full lg:w-6">
+      <div class="text-center mb-5">
+        <img
+          src="assets/icons/logo.svg"
+          alt="Image"
+          height="100"
+          class="mb-3"
+        />
+        <div class="text-900 text-3xl font-medium mb-3">Welcome Back 🙌</div>
+        <span class="text-600 font-medium line-height-3"
+          >Don't have an account?</span
+        >
+        <a
+          [routerLink]="['/register-user']"
+          class="font-medium no-underline ml-2 text-blue-500 cursor-pointer"
+          >Create today!</a
+        >
+      </div>
 
-  <!-- Calling GoogleAuth Api from AuthService -->
-  <p-button
-    label="Sign in with Google"
-    icon="pi pi-google"
-    (onClick)="googleSignIn()"
-    [loading]="googleSignInLoading"
-  ></p-button>
-  <button
-    pButton
-    pRipple
-    type="button"
-    [routerLink]="['/forgot-password']"
-    label="Forgot Password?"
-    class="p-button-text"
-  ></button>
-  <button
-    pButton
-    pRipple
-    type="button"
-    [routerLink]="['/register-user']"
-    label="Don't have an account? Sign Up"
-    class="p-button-text"
-  ></button>
-</div>
+      <div>
+        <label for="email1" class="block text-900 font-medium mb-2"
+          >Email</label
+        >
+        <input
+          id="email1"
+          type="text"
+          pInputText
+          required
+          class="w-full mb-3"
+          [(ngModel)]="username"
+          formControlName="email"
+        />
+        <p-message
+          *ngIf="
+            userform &&
+            userform.controls['email'].errors &&
+            !userform.controls['email'].valid &&
+            userform.controls['email'].touched
+          "
+          severity="error"
+          [text]="
+            userform.controls['email'].errors['required']
+              ? 'email is required'
+              : userform.controls['email'].errors['email']
+              ? 'email is not valid'
+              : ''
+          "
+        ></p-message>
+
+        <label for="password1" class="block text-900 font-medium mb-2"
+          >Password</label
+        >
+        <input
+          id="password1"
+          type="password"
+          pInputText
+          required
+          class="w-full mb-3"
+          [(ngModel)]="password"
+          formControlName="password"
+        />
+        <p-message
+          *ngIf="
+            userform &&
+            userform.controls['password'].errors &&
+            !userform.controls['password'].valid &&
+            userform.controls['password'].touched
+          "
+          severity="error"
+          [text]="
+            userform.controls['password'].errors['required']
+              ? 'Password is required'
+              : userform.controls['password'].errors['minlength']
+              ? 'Must be longer than 6 characters'
+              : ''
+          "
+        ></p-message>
+
+        <div class="flex align-items-center justify-content-between mb-6 mt-2">
+          <a
+            [routerLink]="['/forgot-password']"
+            class="font-medium no-underline ml-2 text-blue-500 text-right cursor-pointer"
+            >Forgot password?</a
+          >
+        </div>
+
+        <button
+          pButton
+          pRipple
+          (submit)="signIn()"
+          label="Sign In"
+          icon="pi pi-user"
+          class="w-full mb-3"
+          (click)="validateAllFormFields(userform)"
+          [loading]="signInLoading"
+        ></button>
+
+        <button
+          pButton
+          pRipple
+          label="Sign in with Google"
+          class="w-full mb-3"
+          icon="pi pi-google"
+          (click)="googleSignIn()"
+          [loading]="googleSignInLoading"
+        ></button>
+      </div>
+    </div>
+  </div>
+</form>
