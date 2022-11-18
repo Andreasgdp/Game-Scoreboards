@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { LandingComponent } from './pages/landing/landing.component';
 
+import { LandingGuard } from '@guards/landing.guard';
 import { GamesComponent } from '@pages/games/games.component';
 import { SettingsComponent } from '@pages/settings/settings.component';
 import { ForgotPasswordComponent } from './pages/Auth/forgot-password/forgot-password.component';
@@ -13,9 +14,23 @@ import { PagenotfoundComponent } from './pages/pagenotfound/pagenotfound.compone
 import { AuthGuard } from './shared/guards/auth.guard';
 
 const routes: Routes = [
-  { path: '', component: LandingComponent },
-  { path: 'sign-in', component: SignInComponent },
-  { path: 'register-user', component: SignUpComponent },
+  { path: '', component: LandingComponent, canActivate: [LandingGuard] },
+  { path: 'sign-in', component: SignInComponent, canActivate: [LandingGuard] },
+  {
+    path: 'register-user',
+    component: SignUpComponent,
+    canActivate: [LandingGuard],
+  },
+  {
+    path: 'forgot-password',
+    component: ForgotPasswordComponent,
+    canActivate: [LandingGuard],
+  },
+  {
+    path: 'verify-email-address',
+    component: VerifyEmailComponent,
+    canActivate: [LandingGuard],
+  },
   {
     path: 'dashboard',
     component: DashboardComponent,
@@ -28,8 +43,6 @@ const routes: Routes = [
     component: SettingsComponent,
     canActivate: [AuthGuard],
   },
-  { path: 'forgot-password', component: ForgotPasswordComponent },
-  { path: 'verify-email-address', component: VerifyEmailComponent },
   //Wild Card Route for 404 request
   { path: '**', pathMatch: 'full', component: PagenotfoundComponent },
 ];

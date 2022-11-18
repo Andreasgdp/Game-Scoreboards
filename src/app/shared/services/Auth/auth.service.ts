@@ -48,13 +48,16 @@ export class AuthService {
       });
   }
   // Sign up with email/password
-  SignUp(email: string, password: string) {
+  SignUp(email: string, password: string, displayName: string) {
     return this.afAuth
       .createUserWithEmailAndPassword(email, password)
       .then((result) => {
         /* Call the SendVerificaitonMail() function when new user sign 
         up and returns promise */
         this.SendVerificationMail();
+        result.user?.updateProfile({
+          displayName: displayName,
+        });
         this.SetUserData(result.user);
       })
       .catch((error) => {
@@ -89,15 +92,14 @@ export class AuthService {
   // Returns true when user is looged in and email is verified
   get uid(): string {
     const user = JSON.parse(localStorage.getItem('user')!);
-    if (user?.uid === undefined) throw new Error('AuthService: User is not logged in');
+    if (user?.uid === undefined)
+      throw new Error('AuthService: User is not logged in');
     return user?.uid;
   }
 
   // Sign in with Google
   GoogleAuth() {
-    return this.AuthLogin(new auth.GoogleAuthProvider()).then((res: any) => {
-      this.router.navigate(['dashboard']);
-    });
+    return this.AuthLogin(new auth.GoogleAuthProvider());
   }
   // Auth logic to run auth providers
   AuthLogin(provider: any) {
@@ -111,9 +113,6 @@ export class AuthService {
           }
         });
       })
-      .catch((error) => {
-        window.alert(error);
-      });
   }
   /* Setting up user data when sign in with username/password, 
   sign up with username/password and sign in with social auth  

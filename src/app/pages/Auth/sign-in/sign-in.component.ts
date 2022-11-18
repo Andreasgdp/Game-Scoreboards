@@ -3,12 +3,11 @@ import {
   FormBuilder,
   FormControl,
   FormGroup,
-  FormsModule,
   Validators,
 } from '@angular/forms';
 import { AuthService } from '@services/Auth';
 import { MenubarService } from '@services/utils';
-import { MenuItem } from 'primeng/api';
+import { MenuItem, MessageService } from 'primeng/api';
 
 @Component({
   selector: 'sign-in',
@@ -34,7 +33,8 @@ export class SignInComponent {
   constructor(
     private fb: FormBuilder,
     public authService: AuthService,
-    public menuBarService: MenubarService
+    public menuBarService: MenubarService,
+    private messageService: MessageService
   ) {
     this.items = menuBarService.getItems();
   }
@@ -48,9 +48,20 @@ export class SignInComponent {
 
   googleSignIn() {
     this.googleSignInLoading = true;
-    this.authService.GoogleAuth().then(() => {
-      this.googleSignInLoading = false;
-    });
+    this.authService
+      .GoogleAuth()
+      .then(() => {
+        this.googleSignInLoading = false;
+      })
+      .catch((err) => {
+        this.messageService.add({
+          key: 'signInfo',
+          severity: 'error',
+          summary: 'Google Sign In Failed',
+          detail: err,
+        });
+        this.googleSignInLoading = false;
+      });
   }
 
   validateAllFormFields(formGroup: FormGroup) {
@@ -62,5 +73,9 @@ export class SignInComponent {
         this.validateAllFormFields(control);
       }
     });
+
+    if (formGroup.valid) {
+      this.signIn();
+    }
   }
 }

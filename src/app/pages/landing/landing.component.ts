@@ -14,7 +14,11 @@ export class LandingComponent implements OnInit {
   }
   ngOnInit() {}
 
-  goToSignIn() {
-    // go to /sign-in
+  openGithub() {
+    window.open('https://github.com/Andreasgdp/Game-Scoreboards', '_blank');
+  }
+
+  joinDiscord() {
+    window.open('https://discord.gg/MjqJzFzGz5', '_blank');
   }
 }
