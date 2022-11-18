@@ -21,6 +21,14 @@ firebase login
 
 For development management we are using [ZenHub Board](https://app.zenhub.com/workspaces/game-scoreboards-6346a553c38ea62f75099c8f/board). It is recommended to install the browser [extension for ZenHub](https://chrome.google.com/webstore/detail/zenhub-for-github/ogcgkffhplmphkaahpmffcafajaocjbd?hl=en), to be able to view information from our ZenHub board within GitHub.
 
+## Useful links
+
+- [Firebase](https://console.firebase.google.com/project/game-scoreboards/overview)
+- [PrimeNG](https://www.primefaces.org/primeng/#/)
+- [PrimeIcons](https://www.primefaces.org/primeng/icons)
+- [primeflex](https://www.primefaces.org/primeflex/)
+- [PrimeBlocks](https://www.primefaces.org/primeblocks-ng/#/)
+
 ## Feature plan
 
 ### 1. Scoreboard feature - point given scoreboard

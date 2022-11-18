@@ -23,7 +23,8 @@ import {
   initializeFirestore,
   provideFirestore,
 } from '@angular/fire/firestore';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { ServiceWorkerModule } from '@angular/service-worker';
 import { PlayerScoreControlComponent } from '@components/player-score-control/player-score-control.component';
 import { ForgotPasswordComponent } from '@pages/Auth/forgot-password/forgot-password.component';
 import { SignInComponent } from '@pages/Auth/sign-in/sign-in.component';
@@ -36,13 +37,18 @@ import { AvatarModule } from 'primeng/avatar';
 import { AvatarGroupModule } from 'primeng/avatargroup';
 import { ButtonModule } from 'primeng/button';
 import { CardModule } from 'primeng/card';
+import { CheckboxModule } from 'primeng/checkbox';
 import { DynamicDialogModule } from 'primeng/dynamicdialog';
 import { ImageModule } from 'primeng/image';
 import { InputNumberModule } from 'primeng/inputnumber';
 import { InputTextModule } from 'primeng/inputtext';
 import { ListboxModule } from 'primeng/listbox';
 import { MenubarModule } from 'primeng/menubar';
+import { MessageModule } from 'primeng/message';
+import { MessagesModule } from 'primeng/messages';
+import { RippleModule } from 'primeng/ripple';
 import { SkeletonModule } from 'primeng/skeleton';
+import { StyleClassModule } from 'primeng/styleclass';
 import { ToastModule } from 'primeng/toast';
 import { environment } from '../environments/environment';
 import { AppRoutingModule } from './app-routing.module';
@@ -51,7 +57,6 @@ import { PGSPlayerScoreCounterComponent } from './components/pgs-player-score-co
 import { ScoreboardCardComponent } from './components/scoreboard-card/scoreboard-card.component';
 import { GamesComponent } from './pages/games/games.component';
 import { SettingsComponent } from './pages/settings/settings.component';
-import { ServiceWorkerModule } from '@angular/service-worker';
 
 @NgModule({
   declarations: [
@@ -73,8 +78,13 @@ import { ServiceWorkerModule } from '@angular/service-worker';
     BrowserModule,
     BrowserAnimationsModule,
     AppRoutingModule,
+    StyleClassModule,
     ButtonModule,
     SkeletonModule,
+    RippleModule,
+    MessagesModule,
+    MessageModule,
+    CheckboxModule,
     InputNumberModule,
     CardModule,
     ListboxModule,
@@ -83,6 +93,7 @@ import { ServiceWorkerModule } from '@angular/service-worker';
     AvatarGroupModule,
     ToastModule,
     FormsModule,
+    ReactiveFormsModule,
     ImageModule,
     MenubarModule,
     InputTextModule,
@@ -126,7 +137,7 @@ import { ServiceWorkerModule } from '@angular/service-worker';
       enabled: environment.production,
       // Register the ServiceWorker as soon as the application is stable
       // or after 30 seconds (whichever comes first).
-      registrationStrategy: 'registerWhenStable:30000'
+      registrationStrategy: 'registerWhenStable:30000',
     }),
   ],
   providers: [

@@ -1,3 +1,271 @@
 <p-menubar [model]="items" class="nav">
-  <p-button label="Sign In" icon="pi pi-sign-in" [routerLink]="['/sign-in']"></p-button>
+  <p-button
+    label="Sign In"
+    icon="pi pi-sign-in"
+    [routerLink]="['/sign-in']"
+  ></p-button>
 </p-menubar>
+
+<div class="grid grid-nogutter surface-section text-800">
+  <div
+    class="col-12 md:col-6 p-6 text-center md:text-left flex align-items-center"
+  >
+    <section>
+      <span class="block text-6xl font-bold mb-1">{{
+        "Create Games and" | titlecase
+      }}</span>
+      <div class="text-6xl text-primary font-bold mb-3">
+        {{ "easily keep track of the scoreboard" | titlecase }}
+      </div>
+      <p class="mt-0 mb-4 text-700 line-height-3">
+        Game Scoreboards is a website that enables you to log scoreboards of
+        different kinds.
+      </p>
+
+      <button
+        pButton
+        pRipple
+        label="Learn More"
+        type="button"
+        class="mr-3 p-button-raised"
+        disabled
+      ></button>
+      <button
+        pButton
+        pRipple
+        label="Live Demo"
+        type="button"
+        class="p-button-outlined"
+        disabled
+      ></button>
+    </section>
+  </div>
+  <div class="col-12 md:col-6 overflow-hidden">
+    <img
+      src="assets/images/blocks/hero/hero-2.png"
+      alt="Image"
+      class="md:ml-auto block md:h-full"
+      style="clip-path: polygon(8% 0, 100% 0%, 100% 100%, 0 100%)"
+    />
+  </div>
+</div>
+
+<div class="surface-section px-4 py-8 md:px-6 lg:px-8 text-center">
+  <div class="mb-3 font-bold text-2xl">
+    <span class="text-900">One Product, </span>
+    <span class="text-blue-600">Many Solutions</span>
+  </div>
+  <div class="text-700 text-sm mb-6">
+    Game Scoreboards is a website that enables you to log scoreboards of
+    different kinds.
+  </div>
+  <div class="grid">
+    <div class="col-12 md:col-4 mb-4 px-5">
+      <span
+        class="p-3 shadow-2 mb-3 inline-block surface-card"
+        style="border-radius: 10px"
+      >
+        <i class="pi pi-desktop text-4xl text-blue-500"></i>
+      </span>
+      <div class="text-900 mb-3 font-medium">Built For All Types of Gamers</div>
+      <span class="text-700 text-sm line-height-3">
+        Create your own game and keep track of the score. You can also join a
+        game hosted by someone else.
+      </span>
+    </div>
+    <div class="col-12 md:col-4 mb-4 px-5">
+      <span
+        class="p-3 shadow-2 mb-3 inline-block surface-card"
+        style="border-radius: 10px"
+      >
+        <i class="pi pi-lock text-4xl text-blue-500"></i>
+      </span>
+      <div class="text-900 mb-3 font-medium">
+        Secured with Authenticated Users
+      </div>
+      <span class="text-700 text-sm line-height-3">
+        For private games you can only join if you have been invited.
+      </span>
+    </div>
+    <div class="col-12 md:col-4 mb-4 px-5">
+      <span
+        class="p-3 shadow-2 mb-3 inline-block surface-card"
+        style="border-radius: 10px"
+      >
+        <i class="pi pi-check-circle text-4xl text-blue-500"></i>
+      </span>
+      <div class="text-900 mb-3 font-medium">Easy to Use</div>
+      <span class="text-700 text-sm line-height-3">
+        Game Scoreboards was created with simplicity in mind. It is easy to use
+        and understand.
+      </span>
+    </div>
+    <div class="col-12 md:col-4 mb-4 px-5">
+      <span
+        class="p-3 shadow-2 mb-3 inline-block surface-card"
+        style="border-radius: 10px"
+      >
+        <i class="pi pi-globe text-4xl text-blue-500"></i>
+      </span>
+      <div class="text-900 mb-3 font-medium">Fast & Global</div>
+      <span class="text-700 text-sm line-height-3">
+        Game Scoreboards is hosted on the cloud and is available to anyone.
+      </span>
+    </div>
+    <div class="col-12 md:col-4 mb-4 px-5">
+      <span
+        (click)="openGithub()"
+        class="p-3 shadow-2 mb-3 inline-block surface-card cursor-pointer"
+        style="border-radius: 10px"
+      >
+        <i class="pi pi-github text-4xl text-blue-500"></i>
+      </span>
+      <div class="text-900 mb-3 font-medium">Open Source</div>
+      <span class="text-700 text-sm line-height-3"
+        >Game Scoreboards is open source and available on Github.
+      </span>
+    </div>
+    <div class="col-12 md:col-4 md:mb-4 mb-0 px-3">
+      <span
+        class="p-3 shadow-2 mb-3 inline-block surface-card"
+        style="border-radius: 10px"
+      >
+        <i class="pi pi-shield text-4xl text-blue-500"></i>
+      </span>
+      <div class="text-900 mb-3 font-medium">Trusted Securitty</div>
+      <span class="text-700 text-sm line-height-3">
+        Game Scoreboards is secured with Firebase Authentication.
+      </span>
+    </div>
+  </div>
+</div>
+
+<div class="surface-ground px-4 py-8 md:px-6 lg:px-8">
+  <div class="text-900 font-bold text-6xl mb-4 text-center">Pricing Plans</div>
+  <div class="text-700 text-xl mb-6 text-center line-height-3">
+    Pricing plans will be available in the future...
+  </div>
+
+  <div class="grid">
+    <div class="col-12 lg:col-4">
+      <div class="p-3 h-full">
+        <div
+          class="shadow-2 p-3 h-full flex flex-column surface-card"
+          style="border-radius: 6px"
+        >
+          <div class="text-900 font-medium text-xl mb-2">Basic</div>
+          <div class="text-600">Basic offers ...</div>
+          <hr class="my-3 mx-0 border-top-1 border-none surface-border" />
+          <div class="flex align-items-center">
+            <span class="font-bold text-2xl text-900">$?</span>
+            <span class="ml-2 font-medium text-600">per month</span>
+          </div>
+          <hr class="my-3 mx-0 border-top-1 border-none surface-border" />
+          <ul class="list-none p-0 m-0 flex-grow-1">
+            <li class="flex align-items-center mb-3">
+              <i class="pi pi-check-circle text-green-500 mr-2"></i>
+              <span class="text-900">Feature ...</span>
+            </li>
+          </ul>
+          <hr
+            class="mb-3 mx-0 border-top-1 border-none surface-border mt-auto"
+          />
+          <button
+            pButton
+            pRipple
+            label="Buy Now"
+            class="p-3 w-full mt-auto"
+            disabled
+          ></button>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-12 lg:col-4">
+      <div class="p-3 h-full">
+        <div
+          class="shadow-2 p-3 h-full flex flex-column surface-card"
+          style="border-radius: 6px"
+        >
+          <div class="text-900 font-medium text-xl mb-2">Premium</div>
+          <div class="text-600">Premium offers ...</div>
+          <hr class="my-3 mx-0 border-top-1 border-none surface-border" />
+          <div class="flex align-items-center">
+            <span class="font-bold text-2xl text-900">$??</span>
+            <span class="ml-2 font-medium text-600">per month</span>
+          </div>
+          <hr class="my-3 mx-0 border-top-1 border-none surface-border" />
+          <ul class="list-none p-0 m-0 flex-grow-1">
+            <li class="flex align-items-center mb-3">
+              <i class="pi pi-check-circle text-green-500 mr-2"></i>
+              <span class="text-900">Feature ...</span>
+            </li>
+          </ul>
+          <hr class="mb-3 mx-0 border-top-1 border-none surface-border" />
+          <button
+            pButton
+            pRipple
+            label="Buy Now"
+            class="p-3 w-full"
+            disabled
+          ></button>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-12 lg:col-4">
+      <div class="p-3 h-full">
+        <div
+          class="shadow-2 p-3 flex flex-column surface-card"
+          style="border-radius: 6px"
+        >
+          <div class="text-900 font-medium text-xl mb-2">Enterprise</div>
+          <div class="text-600">Enterprise offers ...</div>
+          <hr class="my-3 mx-0 border-top-1 border-none surface-border" />
+          <div class="flex align-items-center">
+            <span class="font-bold text-2xl text-900">$???</span>
+            <span class="ml-2 font-medium text-600">per month</span>
+          </div>
+          <hr class="my-3 mx-0 border-top-1 border-none surface-border" />
+          <ul class="list-none p-0 m-0 flex-grow-1">
+            <li class="flex align-items-center mb-3">
+              <i class="pi pi-check-circle text-green-500 mr-2"></i>
+              <span class="text-900">Feature ...</span>
+            </li>
+          </ul>
+          <hr class="mb-3 mx-0 border-top-1 border-none surface-border" />
+          <button
+            pButton
+            pRipple
+            label="Buy Now"
+            class="p-3 w-full p-button-outlined"
+            disabled
+          ></button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="surface-section px-4 py-8 md:px-6 lg:px-8">
+  <div class="text-700 text-center">
+    <div class="text-blue-600 font-bold mb-3">
+      <i class="pi pi-discord"></i>&nbsp;POWERED BY DISCORD
+    </div>
+    <div class="text-900 font-bold text-5xl mb-3">
+      Join Our Open Source Community
+    </div>
+    <div class="text-700 text-2xl mb-5">
+      Game Scoreboards is an open source project. Join our Discord server to
+      engage and contribute to the project.
+    </div>
+    <button
+      pButton
+      pRipple
+      label="Join Now"
+      icon="pi pi-discord"
+      class="font-bold px-5 py-3 p-button-raised p-button-rounded white-space-nowrap"
+      (click)="joinDiscord()"
+    ></button>
+  </div>
+</div>
